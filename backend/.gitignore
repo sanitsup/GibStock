@@ -1,0 +1,16 @@
+# ข้อมูลลับ
+.env
+.env.local
+.env.production
+
+# Node modules
+node_modules/
+*/node_modules/
+
+# Mac files
+.DS_Store
+**/.DS_Store
+
+# Build files
+dist/
+build/
