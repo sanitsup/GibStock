@@ -6,13 +6,18 @@ const supabase = require('./src/services/supabase')
 const { sendDailySummary } = require('./src/services/telegram')
 
 // เปิดใช้ CORS
-fastify.register(require('@fastify/cors'), { origin: '*' })
+fastify.register(require('@fastify/cors'), {
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+})
 
 // ลงทะเบียน Routes ทั้งหมด
 fastify.register(require('./src/routes/products'))
 fastify.register(require('./src/routes/stock'))
 fastify.register(require('./src/routes/orders'))
 fastify.register(require('./src/routes/expenses'))
+fastify.register(require('./src/routes/reports'))
+fastify.register(require('./src/routes/analytics'))
 
 // Health Check
 fastify.get('/health', async () => ({ status: 'ok' }))

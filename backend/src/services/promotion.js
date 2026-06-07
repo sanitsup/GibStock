@@ -1,37 +1,17 @@
-const ITEM_PRICE = 100
-
 function calculatePromotion(items) {
+  // นับเฉพาะสินค้าราคา 100 บาท เท่านั้น
+  const promoItems = items.filter(i => Number(i.order_price) === 100)
+  const promoQty = promoItems.reduce((sum, i) => sum + i.qty_sales, 0)
 
-  const totalQty = items.reduce(
-    (sum, item) => sum + item.qty_sales, 0
+  // แถมทุก 10 ชิ้น จากสินค้าราคา 100 เท่านั้น
+  const freeQty = Math.floor(promoQty / 10)
+
+  // grandTotal คำนวณจากราคาจริงทุกชิ้น (รวมสินค้าที่ไม่ใช่ 100 ด้วย)
+  const grandTotal = items.reduce(
+    (sum, item) => sum + (Number(item.order_price) * item.qty_sales), 0
   )
 
-  const freeQty = Math.floor(totalQty / 10)
-  const grandTotal = totalQty * ITEM_PRICE
-
-  if (freeQty === 0) {
-    return { freeQty: 0, discountAmount: 0, grandTotal, freeItems: [] }
-  }
-
-  let remaining = freeQty
-  const freeItems = []
-
-  for (const item of items) {
-    if (remaining <= 0) break
-    const freeCount = Math.min(remaining, item.qty_sales)
-    remaining -= freeCount
-
-    freeItems.push({
-      product_id_ref: item.product_id_ref,
-      product_name: item.product_name,
-      order_price: ITEM_PRICE,
-      qty_sales: freeCount,
-      subtotal: 0,
-      free_itemtype: true
-    })
-  }
-
-  return { freeQty, discountAmount: 0, grandTotal, freeItems }
+  return { freeQty, discountAmount: 0, grandTotal, freeItems: [] }
 }
 
 module.exports = { calculatePromotion }

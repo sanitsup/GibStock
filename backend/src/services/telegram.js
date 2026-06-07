@@ -62,26 +62,38 @@ async function sendSaleAlert(order, items, freeQty, discount, freeItems) {
 
   // รายการสินค้าปกติ
   const itemList = items
-    .map(i => `📦 สินค้า : ${i.product_name}
-🔢 จำนวน : ${i.qty_sales} ชิ้น`)
+    .map(i => `📦 สินค้า : ${i.product_name}\n🔢 จำนวน : ${i.qty_sales} ชิ้น\n💰 ราคา/ชิ้น : ${formatNumber(i.order_price)} บาท`)
     .join('\n')
 
   // รายการของแถม (บอกชื่อสินค้าที่แถม)
-  const freeText = freeQty > 0 && freeItems && freeItems.length > 0
-    ? '\n────────────────\n🎁 <b>ของแถม:</b>\n' + freeItems
-        .map(i => `📦 สินค้า : ${i.product_name}
-🔢 จำนวน : ${i.qty_sales} ชิ้น`)
-        .join('\n')
-    : ''
+  let freeText = ''
+  if (freeQty > 0 && freeItems && freeItems.length > 0) {
+    const freeList = freeItems
+      .map(i => `📦 สินค้า : ${i.product_name}\n🔢 จำนวน : ${i.qty_sales} ชิ้น`)
+      .join('\n')
+    freeText = `🎁 <b>ของแถม:</b>\n${freeList}`
+  }
+
+    // ยอดชำระ = เฉพาะสินค้าที่ซื้อจริง (ไม่รวมของแถม)
+  /*
+  const paidQty = items.reduce((sum, i) => sum + i.qty_sales, 0)
+  const grandTotal = paidQty * 100
+  */
+
+// คำนวณยอดชำระจาก order
+  const paidQty = items.reduce((sum, i) => sum + i.qty_sales, 0)
+
 
   const message = `
-🛍️ <b>แจ้งเตือนรายการขายใหม่!</b>
-============================
-📅 วันที่ขาย : ${dateTime}
-${itemList}
+🛍️ <b>แจ้งเตือนรายการขายใหม่!</b> \n
 
-👕 รวมซื้อ   : ${order.total_qty - freeQty} ชิ้น${freeText}
-💵 ยอดรวม  : ${formatNumber(order.grand_total)} บาท
+📅 วันที่ขาย : ${dateTime} \n
+============================
+${itemList}
+${freeText ? '────────────────\n' + freeText : ''}
+
+👕 รวมสินค้า   : ${paidQty} ชิ้น
+💵 ยอดชำระ  : ${formatNumber(order.grand_total)} บาท
 💳 ชำระด้วย : ${order.payment_method}
 🕐 เวลาส่ง  : ${new Date().toLocaleTimeString('th-TH')}
   `.trim()
