@@ -13,7 +13,7 @@ export default function Layout() {
   return (
     <div className="flex h-screen bg-slate-50">
       <aside className="w-20 bg-sky-100 flex flex-col items-center py-6 gap-6 shadow-xl">
-        <img src="/gibstock_logo.png" alt="GibStock" className="w-12 h-12 rounded-full object-cover" />
+        <img src="/gibstock_logo.svg" alt="GibStock" className="w-12 h-12 rounded-full object-cover" />
         <nav className="flex flex-col gap-2 w-full px-2">
           {navItems.map(({ to, icon: Icon, label }) => (
             <NavLink

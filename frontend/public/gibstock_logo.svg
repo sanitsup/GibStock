@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <!-- พื้นหลัง gradient sky -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0284c7;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- gradient เสื้อ -->
+    <linearGradient id="shirtGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e0f2fe;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- shadow filter -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0369a1" flood-opacity="0.3"/>
+    </filter>
+
+    <!-- inner glow -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- clip วงกลม -->
+    <clipPath id="circleClip">
+      <circle cx="100" cy="100" r="90"/>
+    </clipPath>
+  </defs>
+
+  <!-- พื้นหลังวงกลม -->
+  <circle cx="100" cy="100" r="96" fill="url(#bgGrad)" filter="url(#shadow)"/>
+
+  <!-- วงกลมขอบ subtle -->
+  <circle cx="100" cy="100" r="96" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.4"/>
+
+  <!-- แสงสะท้อนด้านบน -->
+  <ellipse cx="80" cy="65" rx="35" ry="18" fill="white" opacity="0.12"/>
+
+  <!-- ===== รูปเสื้อ ===== -->
+  <!-- คอเสื้อ V-neck -->
+  <path d="M78 62 Q100 85 122 62" fill="none" stroke="url(#shirtGrad)" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- ตัวเสื้อหลัก -->
+  <path d="
+    M60 68
+    L40 90
+    L55 97
+    L55 148
+    L145 148
+    L145 97
+    L160 90
+    L140 68
+    Q130 62 122 62
+    Q100 85 78 62
+    Q70 62 60 68
+    Z
+  " fill="url(#shirtGrad)" filter="url(#glow)"/>
+
+  <!-- เส้นขอบเสื้อ -->
+  <path d="
+    M60 68
+    L40 90
+    L55 97
+    L55 148
+    L145 148
+    L145 97
+    L160 90
+    L140 68
+    Q130 62 122 62
+    Q100 85 78 62
+    Q70 62 60 68
+    Z
+  " fill="none" stroke="#bae6fd" stroke-width="1.5" opacity="0.8"/>
+
+  <!-- เส้นพับแขนซ้าย -->
+  <line x1="55" y1="97" x2="55" y2="107" stroke="#7dd3fc" stroke-width="1.5" opacity="0.6"/>
+  <!-- เส้นพับแขนขวา -->
+  <line x1="145" y1="97" x2="145" y2="107" stroke="#7dd3fc" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- เส้นรายละเอียดเสื้อ - กึ่งกลาง -->
+  <line x1="100" y1="85" x2="100" y2="148" stroke="#bae6fd" stroke-width="1" opacity="0.4" stroke-dasharray="3,4"/>
+
+  <!-- จุด tag เสื้อ -->
+  <rect x="94" y="85" width="12" height="8" rx="2" fill="#7dd3fc" opacity="0.7"/>
+
+  <!-- ===== ป้ายราคา / Stock tag ===== -->
+  <rect x="112" y="108" width="36" height="26" rx="5" fill="#0c4a6e" opacity="0.85"/>
+  <circle cx="118" cy="108" r="3" fill="none" stroke="#7dd3fc" stroke-width="1.5"/>
+  <line x1="118" y1="105" x2="118" y2="100" stroke="#7dd3fc" stroke-width="1.5"/>
+  <!-- ข้อความในป้าย -->
+  <text x="130" y="120" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="#38bdf8" text-anchor="middle">STOCK</text>
+  <text x="130" y="129" font-family="Arial, sans-serif" font-size="6" fill="#7dd3fc" text-anchor="middle">✓ POS</text>
+
+  <!-- ===== ตัวอักษร G ใหญ่ ===== -->
+  <text x="75" y="138" font-family="Georgia, serif" font-size="42" font-weight="bold" fill="#0c4a6e" opacity="0.15" text-anchor="middle">G</text>
+
+  <!-- ===== ข้อความ GibStock ด้านล่าง ===== -->
+  <!-- แถบสีด้านล่าง -->
+  <rect x="10" y="158" width="180" height="32" rx="0" fill="#0c4a6e" opacity="0.35" clip-path="url(#circleClip)"/>
+
+  <text
+    x="100"
+    y="180"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="19"
+    font-weight="bold"
+    fill="white"
+    text-anchor="middle"
+    letter-spacing="2"
+    filter="url(#shadow)"
+  >GibStock</text>
+
+</svg>
