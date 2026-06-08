@@ -1,28 +1,20 @@
 import { useState } from 'react'
-import { Trash2, Plus, Minus, ShoppingCart } from 'lucide-react'
+import { Trash2, Plus, Minus, ShoppingCart, X } from 'lucide-react'
 import { createOrder } from '../services/api'
 import { getProductIcon } from '../utils/productIcon'
 import FreeItemModal from './FreeItemModal'
 
-
-// ใหม่ — คำนวณจากราคาจริงแต่ละสินค้า
 const calcPromotion = (cart) => {
   const totalQty = cart.reduce((sum, i) => sum + i.qty, 0)
-
-  // นับเฉพาะสินค้าราคา 100 บาท
   const promoQty = cart
     .filter(i => Number(i.price) === 100)
     .reduce((sum, i) => sum + i.qty, 0)
-
   const freeQty = Math.floor(promoQty / 10)
-
-  // ยอดรวมคำนวณจากราคาจริงทุกชิ้น
   const grandTotal = cart.reduce((sum, i) => sum + (Number(i.price) * i.qty), 0)
-
   return { totalQty, promoQty, freeQty, grandTotal }
 }
 
-export default function CartPanel({ cart, setCart, clearCart, onOrderSuccess }) {
+export default function CartPanel({ cart, setCart, clearCart, onOrderSuccess, onClose, isMobile }) {
   const [paymentMethod, setPaymentMethod] = useState('cash')
   const [loading, setLoading] = useState(false)
   const [successMsg, setSuccessMsg] = useState('')
@@ -37,7 +29,6 @@ export default function CartPanel({ cart, setCart, clearCart, onOrderSuccess }) 
         .map(i => i.product_id === product_id ? { ...i, qty: i.qty + delta } : i)
         .filter(i => i.qty > 0)
     )
-    // reset ของแถมถ้าแก้จำนวน
     setFreeItems([])
   }
 
@@ -48,13 +39,10 @@ export default function CartPanel({ cart, setCart, clearCart, onOrderSuccess }) 
 
   const handleCheckout = async () => {
     if (cart.length === 0) return
-
-    // ถ้ามีของแถมแต่ยังไม่ได้เลือก → เปิด Modal
     if (freeQty > 0 && freeItems.length === 0) {
       setShowFreeModal(true)
       return
     }
-
     setLoading(true)
     try {
       const payload = {
@@ -75,10 +63,8 @@ export default function CartPanel({ cart, setCart, clearCart, onOrderSuccess }) 
           }))
         ]
       }
-      // Console.log เพื่อดูโครงสร้าง payload ที่ส่งไปยัง backend ว่าถูกต้องไหม
-      console.log('payload ที่ส่ง:', JSON.stringify(payload, null, 2)) 
+      console.log('payload ที่ส่ง:', JSON.stringify(payload, null, 2))
       await createOrder(payload)
-
       setSuccessMsg(`✅ บันทึกการขายสำเร็จ! ยอด ฿${grandTotal.toLocaleString()}`)
       setFreeItems([])
       onOrderSuccess()
@@ -102,7 +88,7 @@ export default function CartPanel({ cart, setCart, clearCart, onOrderSuccess }) 
         />
       )}
 
-      <div className="w-80 bg-white border-l border-sky-100 flex flex-col h-screen">
+      <div className={`bg-white flex flex-col ${isMobile ? 'w-full max-h-[85vh]' : 'w-80 border-l border-sky-100 h-screen'}`}>
         {/* Header */}
         <div className="p-4 border-b border-sky-100 flex items-center gap-2">
           <ShoppingCart className="text-sky-500" size={20} />
@@ -113,6 +99,14 @@ export default function CartPanel({ cart, setCart, clearCart, onOrderSuccess }) 
               className="ml-auto text-red-400 hover:text-red-600"
             >
               <Trash2 size={16} />
+            </button>
+          )}
+          {isMobile && onClose && (
+            <button
+              onClick={onClose}
+              className={`${cart.length > 0 ? 'ml-2' : 'ml-auto'} text-slate-400 hover:text-slate-600`}
+            >
+              <X size={20} />
             </button>
           )}
         </div>
@@ -144,7 +138,6 @@ export default function CartPanel({ cart, setCart, clearCart, onOrderSuccess }) 
                   >
                     <Minus size={12} />
                   </button>
-
                   <input
                     type="number"
                     min="1"
@@ -154,9 +147,7 @@ export default function CartPanel({ cart, setCart, clearCart, onOrderSuccess }) 
                       if (!val || val < 1) return
                       setCart(prev =>
                         prev.map(i =>
-                          i.product_id === item.product_id
-                            ? { ...i, qty: val }
-                            : i
+                          i.product_id === item.product_id ? { ...i, qty: val } : i
                         )
                       )
                       setFreeItems([])
@@ -165,7 +156,6 @@ export default function CartPanel({ cart, setCart, clearCart, onOrderSuccess }) 
                               border border-sky-200 rounded-lg focus:outline-none
                               focus:border-sky-400 bg-white"
                   />
-
                   <button
                     onClick={() => updateQty(item.product_id, 1)}
                     className="w-6 h-6 rounded-full bg-sky-200 hover:bg-sky-300
@@ -181,12 +171,9 @@ export default function CartPanel({ cart, setCart, clearCart, onOrderSuccess }) 
 
         {/* สรุปยอด */}
         <div className="p-4 border-t border-sky-100 flex flex-col gap-3">
-
-          {/* แสดงของแถม */}
           {freeQty > 0 && (
             <div
               onClick={() => setShowFreeModal(true)}
-              // ใหม่ (ถูก — ใช้ backtick)
               className={`cursor-pointer border rounded-xl p-3 text-sm transition-all
                 ${freeItems.length > 0
                   ? 'bg-amber-50 border-amber-200'
@@ -221,7 +208,6 @@ export default function CartPanel({ cart, setCart, clearCart, onOrderSuccess }) 
             <span className="text-sky-600">฿{grandTotal.toLocaleString()}</span>
           </div>
 
-          {/* วิธีชำระเงิน */}
           <div className="flex gap-2">
             {['cash', 'transfer'].map(method => (
               <button
