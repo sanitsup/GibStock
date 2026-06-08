@@ -12,6 +12,7 @@ function formatNumber(num) {
 
 function formatDateTime(date) {
   return date.toLocaleDateString('th-TH', {
+    timeZone: 'Asia/Bangkok',
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -65,7 +66,7 @@ async function sendSaleAlert(order, items, freeQty, discount, freeItems) {
     .map(i => `📦 สินค้า : ${i.product_name}\n🔢 จำนวน : ${i.qty_sales} ชิ้น\n💰 ราคา/ชิ้น : ${formatNumber(i.order_price)} บาท`)
     .join('\n')
 
-  // รายการของแถม (บอกชื่อสินค้าที่แถม)
+  // รายการของแถม
   let freeText = ''
   if (freeQty > 0 && freeItems && freeItems.length > 0) {
     const freeList = freeItems
@@ -74,15 +75,9 @@ async function sendSaleAlert(order, items, freeQty, discount, freeItems) {
     freeText = `🎁 <b>ของแถม:</b>\n${freeList}`
   }
 
-    // ยอดชำระ = เฉพาะสินค้าที่ซื้อจริง (ไม่รวมของแถม)
-  /*
-  const paidQty = items.reduce((sum, i) => sum + i.qty_sales, 0)
-  const grandTotal = paidQty * 100
-  */
-
-// คำนวณยอดชำระจาก order
   const paidQty = items.reduce((sum, i) => sum + i.qty_sales, 0)
 
+  const timeOnly = new Date().toLocaleTimeString('th-TH', { timeZone: 'Asia/Bangkok' })
 
   const message = `
 🛍️ <b>แจ้งเตือนรายการขายใหม่!</b> \n
@@ -95,7 +90,7 @@ ${freeText ? '────────────────\n' + freeText : '
 👕 รวมสินค้า   : ${paidQty} ชิ้น
 💵 ยอดชำระ  : ${formatNumber(order.grand_total)} บาท
 💳 ชำระด้วย : ${order.payment_method}
-🕐 เวลาส่ง  : ${new Date().toLocaleTimeString('th-TH')}
+🕐 เวลาส่ง  : ${timeOnly}
   `.trim()
 
   await sendMessage(message)
@@ -106,7 +101,6 @@ ${freeText ? '────────────────\n' + freeText : '
 // =============================================
 async function sendDailySummary(summary, date) {
 
-    // วันที่แบบเดียวกับแจ้งเตือนการขาย
   const dateTime = formatDateTime(new Date())
 
   // Top 3 สินค้าขายดี
@@ -133,10 +127,7 @@ async function sendDailySummary(summary, date) {
 ${top3Text}
 ========================`
 
-  // Path ของโลโก้
   const logoPath = path.join(__dirname, '../../gibstock_logo.png')
-
-    // ส่งรูปโลโก้ + สรุปยอดเป็น Caption
   await sendPhoto(logoPath, summaryCaption)
 }
 
