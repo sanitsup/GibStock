@@ -351,17 +351,51 @@ function SalesReport({ data }) {
 }
 
 // ── Tab: รายการออเดอร์ ───────────────────────────────────────
+const PAGE_SIZE = 25
+
 function OrderList({ data, onEdit, onDelete }) {
   const [expandedOrder, setExpandedOrder] = useState(null)
+  const [searchId, setSearchId] = useState('')
+  const [page, setPage] = useState(1)
+
+  const filteredOrders = searchId.trim()
+    ? data.orders.filter(o => {
+        const q = searchId.trim().toLowerCase()
+        const matchId = String(o.order_id).includes(q)
+        const matchProduct = (o.details || []).some(d =>
+          (d.product_name || '').toLowerCase().includes(q)
+        )
+        return matchId || matchProduct
+      })
+    : data.orders
+
+  const totalPages = Math.ceil(filteredOrders.length / PAGE_SIZE)
+  const pagedOrders = filteredOrders.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
+
+  // reset หน้าเมื่อ search เปลี่ยน
+  const handleSearch = (val) => {
+    setSearchId(val)
+    setPage(1)
+  }
 
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-      <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-        <h2 className="font-bold text-slate-700 text-lg">🧾 รายการออเดอร์</h2>
-        <span className="text-sm text-slate-400">{data.orders.length} รายการ</span>
+      <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between gap-3">
+        <h2 className="font-bold text-slate-700 text-lg shrink-0">🧾 รายการออเดอร์</h2>
+        <input
+          type="text"
+          placeholder="ค้นหา Order ID หรือชื่อสินค้า..."
+          value={searchId}
+          onChange={e => handleSearch(e.target.value)}
+          className="flex-1 max-w-xs border border-slate-200 rounded-xl px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-sky-300 text-slate-600"
+        />
+        <span className="text-sm text-slate-400 shrink-0">{filteredOrders.length} รายการ</span>
       </div>
+      {filteredOrders.length === 0 && (
+        <div className="text-center py-10 text-slate-400 text-sm">ไม่พบ Order ID: {searchId}</div>
+      )}
       <div className="divide-y divide-slate-50">
-        {data.orders.map(order => (
+        {pagedOrders.map(order => (
           <div key={order.order_id}>
             {/* หัวออเดอร์ */}
             <div className="flex items-center px-4 py-3 hover:bg-slate-50 transition-colors gap-2">
@@ -425,6 +459,34 @@ function OrderList({ data, onEdit, onDelete }) {
           </div>
         ))}
       </div>
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="px-6 py-4 border-t border-slate-100 flex items-center justify-between gap-3">
+          <button
+            onClick={() => setPage(p => Math.max(1, p - 1))}
+            disabled={page === 1}
+            className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-sm font-medium disabled:opacity-30 transition-colors"
+          >‹ ก่อนหน้า</button>
+          <div className="flex items-center gap-1">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
+              <button
+                key={p}
+                onClick={() => setPage(p)}
+                className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors
+                  ${p === page
+                    ? "bg-sky-500 text-white"
+                    : "bg-slate-100 hover:bg-slate-200 text-slate-600"
+                  }`}
+              >{p}</button>
+            ))}
+          </div>
+          <button
+            onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+            disabled={page === totalPages}
+            className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-sm font-medium disabled:opacity-30 transition-colors"
+          >ถัดไป ›</button>
+        </div>
+      )}
     </div>
   )
 }
