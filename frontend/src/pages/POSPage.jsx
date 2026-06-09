@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { getProducts, getStock, updateProductStatus } from '../services/api'
 import CartPanel from '../components/CartPanel'
-import { ShoppingBag, ShoppingCart } from 'lucide-react'
+import { ShoppingBag, ShoppingCart, RefreshCw } from 'lucide-react'
 import { getProductIcon } from '../utils/productIcon'
 import { useNavigate } from 'react-router-dom'
 
@@ -9,15 +9,26 @@ export default function POSPage() {
   const [products, setProducts] = useState([])
   const [cart, setCart] = useState([])
   const [loading, setLoading] = useState(true)
+  const [loadingSlow, setLoadingSlow] = useState(false)
+  const [loadError, setLoadError] = useState(false)
   const [dialog, setDialog] = useState(null)
   const [cartOpen, setCartOpen] = useState(false)
   const navigate = useNavigate()
+  const slowTimer = useRef(null)
 
   useEffect(() => { loadProducts() }, [])
 
   const loadProducts = async () => {
+    setLoading(true)
+    setLoadError(false)
+    setLoadingSlow(false)
+
+    // ถ้าโหลดนานเกิน 5 วินาที แสดงข้อความ wake up
+    slowTimer.current = setTimeout(() => setLoadingSlow(true), 5000)
+
     try {
       const [pRes, sRes] = await Promise.all([getProducts(), getStock()])
+      clearTimeout(slowTimer.current)
       const stockMap = {}
       sRes.data.forEach(s => { stockMap[s.product_id] = s.remaining })
       const withStock = pRes.data.map(p => ({
@@ -26,9 +37,13 @@ export default function POSPage() {
       }))
       setProducts(withStock)
     } catch (err) {
+      clearTimeout(slowTimer.current)
       console.error('โหลดสินค้าไม่สำเร็จ', err)
+      setLoadError(true)
     } finally {
+      clearTimeout(slowTimer.current)
       setLoading(false)
+      setLoadingSlow(false)
     }
   }
 
@@ -66,20 +81,44 @@ export default function POSPage() {
   }
 
   const clearCart = () => setCart([])
-
   const totalCartQty = cart.reduce((sum, i) => sum + i.qty, 0)
-
   const activeProducts = products.filter(
     p => p.status !== 'hidden' && p.status !== 'inactive' && p.remaining > 0
   )
 
   if (loading) {
-    return <div className="flex items-center justify-center h-full text-slate-400">กำลังโหลด...</div>
+    return (
+      <div className="flex flex-col items-center justify-center h-full gap-4 text-slate-400">
+        <RefreshCw size={32} className="animate-spin text-sky-400" />
+        {loadingSlow ? (
+          <div className="text-center px-8">
+            <p className="text-slate-600 font-medium">กำลังเชื่อมต่อ กรุณารอสักครู่...</p>
+            <p className="text-sm text-slate-400 mt-1">Server กำลัง wake up (~30-60 วินาที)</p>
+          </div>
+        ) : (
+          <p>กำลังโหลดสินค้า...</p>
+        )}
+      </div>
+    )
+  }
+
+  if (loadError) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full gap-4">
+        <p className="text-slate-500 font-medium">เชื่อมต่อไม่สำเร็จ</p>
+        <button
+          onClick={loadProducts}
+          className="flex items-center gap-2 px-5 py-2.5 bg-sky-500 hover:bg-sky-600 text-white rounded-xl font-medium text-sm transition-all"
+        >
+          <RefreshCw size={16} />
+          ลองใหม่อีกครั้ง
+        </button>
+      </div>
+    )
   }
 
   return (
     <div className="flex h-screen">
-      {/* ฝั่งสินค้า */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <div className="p-4 md:p-6 pb-4">
           <h1 className="text-xl md:text-2xl font-bold text-slate-700 flex items-center gap-2">
@@ -115,7 +154,6 @@ export default function POSPage() {
         </div>
       </div>
 
-      {/* CartPanel — desktop: sidebar, mobile: hidden */}
       <div className="hidden md:flex">
         <CartPanel
           cart={cart}
@@ -125,7 +163,6 @@ export default function POSPage() {
         />
       </div>
 
-      {/* ปุ่มตะกร้าลอย — mobile only */}
       <button
         onClick={() => setCartOpen(true)}
         className="md:hidden fixed bottom-6 right-6 z-40 bg-sky-500 hover:bg-sky-600
@@ -141,17 +178,13 @@ export default function POSPage() {
         )}
       </button>
 
-      {/* Drawer ตะกร้า — mobile only */}
       {cartOpen && (
         <div className="md:hidden fixed inset-0 z-50 flex flex-col justify-end">
-          {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black/40"
             onClick={() => setCartOpen(false)}
           />
-          {/* Drawer */}
           <div className="relative bg-white rounded-t-3xl shadow-2xl max-h-[85vh] flex flex-col">
-            {/* Handle bar */}
             <div className="flex justify-center pt-3 pb-1">
               <div className="w-10 h-1 bg-slate-200 rounded-full" />
             </div>
@@ -171,7 +204,6 @@ export default function POSPage() {
         </div>
       )}
 
-      {/* Dialog สินค้าหมด */}
       {dialog && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm p-6">
