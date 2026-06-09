@@ -1,16 +1,15 @@
 require('dotenv').config()
 const path = require('path')
 const fastify = require('fastify')({ logger: true })
+const cron = require('node-cron')
 const supabase = require('./src/services/supabase')
 const { sendDailySummary } = require('./src/services/telegram')
 
-// เปิดใช้ CORS
 fastify.register(require('@fastify/cors'), {
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
 })
 
-// ลงทะเบียน Routes ทั้งหมด
 fastify.register(require('./src/routes/products'))
 fastify.register(require('./src/routes/stock'))
 fastify.register(require('./src/routes/orders'))
@@ -18,13 +17,40 @@ fastify.register(require('./src/routes/expenses'))
 fastify.register(require('./src/routes/reports'))
 fastify.register(require('./src/routes/analytics'))
 
-// Health Check
-fastify.get('/health', async () => ({ status: 'ok' }))
+// ─── Health Check (ตรวจสอบ DB จริง) ──────────────────────────────────────
+fastify.get('/health', async (req, reply) => {
+  const start = Date.now()
+  try {
+    const { error } = await supabase
+      .from('orders')
+      .select('order_id')
+      .limit(1)
+    const latency = Date.now() - start
+    if (error) {
+      return reply.code(503).send({
+        status: 'error',
+        db: 'disconnected',
+        error: error.message,
+        uptime: Math.floor(process.uptime())
+      })
+    }
+    return reply.send({
+      status: 'ok',
+      db: 'connected',
+      db_latency_ms: latency,
+      uptime: Math.floor(process.uptime())
+    })
+  } catch (err) {
+    return reply.code(503).send({
+      status: 'error',
+      db: 'disconnected',
+      error: err.message,
+      uptime: Math.floor(process.uptime())
+    })
+  }
+})
 
-// =============================================
-// Endpoint สำหรับส่งสรุปยอดรายวัน
-// (ถูกเรียกโดย cron-job.org เวลา 20:15 น.)
-// =============================================
+// ─── Build & Send Daily Summary ───────────────────────────────────────────
 async function buildAndSendSummary() {
   const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Bangkok' })
 
@@ -40,7 +66,7 @@ async function buildAndSendSummary() {
 
   const { data: freeData } = await supabase
     .from('order_detail')
-    .select('qty_sales, order_price')
+    .select('qty_sales')
     .eq('free_itemtype', true)
 
   const { data: allDetails } = await supabase
@@ -53,9 +79,7 @@ async function buildAndSendSummary() {
     for (const detail of allDetails) {
       const id = detail.product_id_ref
       const name = detail.product_type?.product_name || 'ไม่ทราบชื่อ'
-      if (!productMap[id]) {
-        productMap[id] = { product_name: name, total_qty: 0 }
-      }
+      if (!productMap[id]) productMap[id] = { product_name: name, total_qty: 0 }
       productMap[id].total_qty += detail.qty_sales
     }
   }
@@ -64,8 +88,8 @@ async function buildAndSendSummary() {
     .sort((a, b) => b.total_qty - a.total_qty)
     .slice(0, 3)
 
-  const totalRevenue = orders?.reduce((s, o) => s + o.grand_total, 0) || 0
-  const totalExpenses = expenses?.reduce((s, e) => s + e.amount, 0) || 0
+  const totalRevenue  = orders?.reduce((s, o) => s + Number(o.grand_total), 0) || 0
+  const totalExpenses = expenses?.reduce((s, e) => s + Number(e.amount), 0) || 0
   const totalFreeItems = freeData?.reduce((s, f) => s + f.qty_sales, 0) || 0
 
   await sendDailySummary({
@@ -79,19 +103,37 @@ async function buildAndSendSummary() {
   }, today)
 }
 
-// Endpoint สำหรับ cron-job.org เรียกตอน 20:15 น.
+// ─── Cron: สรุปยอดอัตโนมัติ 20:15 น. (Asia/Bangkok) ─────────────────────
+cron.schedule('15 20 * * *', async () => {
+  console.log('[Cron] ส่งสรุปยอดประจำวัน 20:15 น.')
+  try {
+    await buildAndSendSummary()
+    console.log('[Cron] ส่งสรุปยอดสำเร็จ')
+  } catch (err) {
+    console.error('[Cron] ส่งสรุปยอดล้มเหลว:', err.message)
+  }
+}, { timezone: 'Asia/Bangkok' })
+
+// ─── Endpoints สำหรับเรียกใช้งาน ──────────────────────────────────────────
 fastify.get('/api/daily-summary', async (req, reply) => {
-  await buildAndSendSummary()
-  return reply.send({ success: true, message: 'ส่งสรุปยอดไปแล้วครับ' })
+  try {
+    await buildAndSendSummary()
+    return reply.send({ success: true, message: 'ส่งสรุปยอดไปแล้วครับ' })
+  } catch (err) {
+    return reply.code(500).send({ error: err.message })
+  }
 })
 
-// Endpoint ทดสอบ
 fastify.get('/api/test-summary', async (req, reply) => {
-  await buildAndSendSummary()
-  return reply.send({ success: true, message: 'ส่งสรุปยอดไปแล้วครับ' })
+  try {
+    await buildAndSendSummary()
+    return reply.send({ success: true, message: 'ส่งสรุปยอดไปแล้วครับ' })
+  } catch (err) {
+    return reply.code(500).send({ error: err.message })
+  }
 })
 
-// เริ่ม Server
+// ─── Start Server ──────────────────────────────────────────────────────────
 fastify.listen(
   { port: process.env.PORT || 3000, host: '0.0.0.0' },
   (err) => {
