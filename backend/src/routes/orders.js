@@ -2,13 +2,26 @@ const supabase = require('../services/supabase')
 const { calculatePromotion } = require('../services/promotion')
 const { sendSaleAlert, sendLowStockAlert } = require('../services/telegram')
 
+// ── บันทึก Audit Log ──────────────────────────────────────────────────────
+async function writeAuditLog(action, orderId, oldData, newData) {
+  try {
+    await supabase.from('order_audit_log').insert({
+      action,
+      order_id: orderId,
+      old_data: oldData || null,
+      new_data: newData || null
+    })
+  } catch (err) {
+    console.error('[AuditLog] บันทึกไม่สำเร็จ:', err.message)
+  }
+}
+
 async function orderRoutes(fastify) {
 
   // ─── POST /api/orders ──────────────────────────────────────────────────
   fastify.post('/api/orders', async (req, reply) => {
     const { items, payment_method } = req.body
 
-    // ── Input Validation ──
     if (!items || !Array.isArray(items) || items.length === 0) {
       return reply.code(400).send({ error: 'items ต้องมีอย่างน้อย 1 รายการ' })
     }
@@ -24,14 +37,12 @@ async function orderRoutes(fastify) {
       return reply.code(400).send({ error: 'product_id_ref ต้องระบุทุกรายการ' })
     }
 
-    // ── คำนวณโปรโมชัน ──
     const normalItems = items.filter(i => !i.free_itemtype)
     const freeItemsFromFrontend = items.filter(i => i.free_itemtype)
     const promotion = calculatePromotion(normalItems)
     const { freeQty, grandTotal } = promotion
     const totalQty = normalItems.reduce((sum, i) => sum + i.qty_sales, 0)
 
-    // ── บันทึก orders ──
     const { data: order, error: orderError } = await supabase
       .from('orders')
       .insert({
@@ -43,7 +54,6 @@ async function orderRoutes(fastify) {
       .single()
     if (orderError) return reply.code(500).send({ error: orderError.message })
 
-    // ── บันทึก order_detail ──
     const normalItemsData = normalItems.map(i => ({
       order_id: order.order_id,
       product_id_ref: i.product_id_ref,
@@ -66,23 +76,20 @@ async function orderRoutes(fastify) {
       .insert([...normalItemsData, ...freeItemsData])
     if (detailError) return reply.code(500).send({ error: detailError.message })
 
-    // ── ส่ง Telegram sale alert ──
+    // ── Telegram sale alert ──
     try {
       await sendSaleAlert(order, normalItems, freeQty, 0, freeItemsFromFrontend)
     } catch (err) {
       console.error('[Telegram] sendSaleAlert ล้มเหลว:', err.message)
     }
 
-    // ── ตรวจสต็อกหลังขาย → แจ้งเตือนถ้าใกล้หมด ──
+    // ── ตรวจสต็อกหลังขาย ──
     try {
       const soldProductIds = normalItems.map(i => i.product_id_ref)
-
       const { data: stockData } = await supabase
         .from('product_type')
         .select(`
-          product_id,
-          product_name,
-          initial_stock,
+          product_id, product_name, initial_stock,
           stock ( qty_added ),
           order_detail ( qty_sales, free_itemtype )
         `)
@@ -91,22 +98,17 @@ async function orderRoutes(fastify) {
 
       if (stockData) {
         const lowStockItems = []
-
         for (const p of stockData) {
           const added = (p.stock || []).reduce((s, r) => s + r.qty_added, 0)
           const sold = (p.order_detail || [])
             .filter(d => !d.free_itemtype)
             .reduce((s, d) => s + d.qty_sales, 0)
           const remaining = p.initial_stock + added - sold
-
           if (remaining <= 5) {
             lowStockItems.push({ product_name: p.product_name, remaining })
           }
         }
-
-        if (lowStockItems.length > 0) {
-          await sendLowStockAlert(lowStockItems)
-        }
+        if (lowStockItems.length > 0) await sendLowStockAlert(lowStockItems)
       }
     } catch (err) {
       console.error('[Stock Alert] ตรวจสต็อกล้มเหลว:', err.message)
@@ -164,12 +166,8 @@ async function orderRoutes(fastify) {
     const { data: details, error: detailError } = await supabase
       .from('order_detail')
       .select(`
-        detail_id,
-        product_id_ref,
-        free_itemtype,
-        order_price,
-        qty_sales,
-        subtotal,
+        detail_id, product_id_ref, free_itemtype,
+        order_price, qty_sales, subtotal,
         product_type ( product_name )
       `)
       .eq('order_id', id)
@@ -184,10 +182,16 @@ async function orderRoutes(fastify) {
 
     const { data: order, error: findError } = await supabase
       .from('orders')
-      .select('order_id')
+      .select('*')
       .eq('order_id', id)
       .single()
     if (findError || !order) return reply.code(404).send({ error: 'ไม่พบ order นี้' })
+
+    // ── ดึง detail ก่อนลบ เพื่อบันทึก audit ──
+    const { data: details } = await supabase
+      .from('order_detail')
+      .select('*')
+      .eq('order_id', id)
 
     const { error: detailError } = await supabase
       .from('order_detail')
@@ -200,6 +204,9 @@ async function orderRoutes(fastify) {
       .delete()
       .eq('order_id', id)
     if (orderError) return reply.code(500).send({ error: orderError.message })
+
+    // ── บันทึก audit log ──
+    await writeAuditLog('DELETE', Number(id), { order, details }, null)
 
     return reply.send({ success: true, message: `ลบ Order #${id} เรียบร้อยแล้ว` })
   })
@@ -219,6 +226,12 @@ async function orderRoutes(fastify) {
       .eq('order_id', id)
       .single()
     if (findError || !existingOrder) return reply.code(404).send({ error: 'ไม่พบ order นี้' })
+
+    // ── ดึง detail เก่าก่อนแก้ไข เพื่อบันทึก audit ──
+    const { data: oldDetails } = await supabase
+      .from('order_detail')
+      .select('*')
+      .eq('order_id', id)
 
     const normalItems = items.filter(i => !i.free_itemtype)
     const freeItemsFromFrontend = items.filter(i => i.free_itemtype)
@@ -262,6 +275,14 @@ async function orderRoutes(fastify) {
       .from('order_detail')
       .insert([...normalItemsData, ...freeItemsData])
     if (insertDetailError) return reply.code(500).send({ error: insertDetailError.message })
+
+    // ── บันทึก audit log ──
+    await writeAuditLog(
+      'EDIT',
+      Number(id),
+      { order: existingOrder, details: oldDetails },
+      { order: { total_qty: totalQty + freeQty, grand_total: grandTotal, payment_method }, details: items }
+    )
 
     return reply.send({
       success: true,
