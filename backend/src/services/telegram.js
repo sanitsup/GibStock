@@ -57,16 +57,13 @@ async function sendPhoto(imagePath, captionText) {
 // แจ้งเตือนเมื่อมีการขาย (Real-time)
 // =============================================
 async function sendSaleAlert(order, items, freeQty, discount, freeItems) {
-
   const now = new Date()
   const dateTime = formatDateTime(now)
 
-  // รายการสินค้าปกติ
   const itemList = items
     .map(i => `📦 สินค้า : ${i.product_name}\n🔢 จำนวน : ${i.qty_sales} ชิ้น\n💰 ราคา/ชิ้น : ${formatNumber(i.order_price)} บาท`)
     .join('\n')
 
-  // รายการของแถม
   let freeText = ''
   if (freeQty > 0 && freeItems && freeItems.length > 0) {
     const freeList = freeItems
@@ -76,13 +73,12 @@ async function sendSaleAlert(order, items, freeQty, discount, freeItems) {
   }
 
   const paidQty = items.reduce((sum, i) => sum + i.qty_sales, 0)
-
   const timeOnly = new Date().toLocaleTimeString('th-TH', { timeZone: 'Asia/Bangkok' })
 
   const message = `
-🛍️ <b>แจ้งเตือนรายการขายใหม่!</b> \n
+🛍️ <b>แจ้งเตือนรายการขายใหม่!</b>
 
-📅 วันที่ขาย : ${dateTime} \n
+📅 วันที่ขาย : ${dateTime}
 ============================
 ${itemList}
 ${freeText ? '────────────────\n' + freeText : ''}
@@ -97,18 +93,39 @@ ${freeText ? '────────────────\n' + freeText : '
 }
 
 // =============================================
+// แจ้งเตือนสต็อกใกล้หมด (≤ 5 ชิ้น)
+// =============================================
+async function sendLowStockAlert(lowStockItems) {
+  if (!lowStockItems || lowStockItems.length === 0) return
+
+  const timeOnly = new Date().toLocaleTimeString('th-TH', { timeZone: 'Asia/Bangkok' })
+
+  const itemList = lowStockItems
+    .map(item => {
+      const icon = item.remaining === 0 ? '🔴' : item.remaining <= 2 ? '🟠' : '🟡'
+      return `${icon} ${item.product_name} : เหลือ <b>${item.remaining} ชิ้น</b>`
+    })
+    .join('\n')
+
+  const message = `⚠️ <b>แจ้งเตือน: สต็อกใกล้หมด!</b>
+
+${itemList}
+
+🕐 เวลา : ${timeOnly}
+📌 กรุณาเติมสต็อกโดยด่วน`
+
+  await sendMessage(message)
+}
+
+// =============================================
 // สรุปยอดรายวัน (ส่งอัตโนมัติ 20:15 น.)
 // =============================================
 async function sendDailySummary(summary, date) {
-
   const dateTime = formatDateTime(new Date())
 
-  // Top 3 สินค้าขายดี
   const top3Text = summary.topProducts && summary.topProducts.length > 0
     ? summary.topProducts
-        .map((p, index) =>
-          `  ${index + 1}. ${p.product_name} → ${formatNumber(p.total_qty)} ชิ้น`
-        )
+        .map((p, index) => `  ${index + 1}. ${p.product_name} → ${formatNumber(p.total_qty)} ชิ้น`)
         .join('\n')
     : '  ยังไม่มีข้อมูล'
 
@@ -131,4 +148,4 @@ ${top3Text}
   await sendPhoto(logoPath, summaryCaption)
 }
 
-module.exports = { sendSaleAlert, sendDailySummary }
+module.exports = { sendSaleAlert, sendDailySummary, sendLowStockAlert }

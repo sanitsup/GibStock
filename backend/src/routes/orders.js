@@ -1,6 +1,6 @@
 const supabase = require('../services/supabase')
 const { calculatePromotion } = require('../services/promotion')
-const { sendSaleAlert } = require('../services/telegram')
+const { sendSaleAlert, sendLowStockAlert } = require('../services/telegram')
 
 async function orderRoutes(fastify) {
 
@@ -66,11 +66,50 @@ async function orderRoutes(fastify) {
       .insert([...normalItemsData, ...freeItemsData])
     if (detailError) return reply.code(500).send({ error: detailError.message })
 
-    // ── ส่ง Telegram (ไม่ให้กระทบ flow หลักถ้าล้มเหลว) ──
+    // ── ส่ง Telegram sale alert ──
     try {
       await sendSaleAlert(order, normalItems, freeQty, 0, freeItemsFromFrontend)
-    } catch (telegramErr) {
-      console.error('[Telegram] sendSaleAlert ล้มเหลว:', telegramErr.message)
+    } catch (err) {
+      console.error('[Telegram] sendSaleAlert ล้มเหลว:', err.message)
+    }
+
+    // ── ตรวจสต็อกหลังขาย → แจ้งเตือนถ้าใกล้หมด ──
+    try {
+      const soldProductIds = normalItems.map(i => i.product_id_ref)
+
+      const { data: stockData } = await supabase
+        .from('product_type')
+        .select(`
+          product_id,
+          product_name,
+          initial_stock,
+          stock ( qty_added ),
+          order_detail ( qty_sales, free_itemtype )
+        `)
+        .in('product_id', soldProductIds)
+        .eq('status', 'active')
+
+      if (stockData) {
+        const lowStockItems = []
+
+        for (const p of stockData) {
+          const added = (p.stock || []).reduce((s, r) => s + r.qty_added, 0)
+          const sold = (p.order_detail || [])
+            .filter(d => !d.free_itemtype)
+            .reduce((s, d) => s + d.qty_sales, 0)
+          const remaining = p.initial_stock + added - sold
+
+          if (remaining <= 5) {
+            lowStockItems.push({ product_name: p.product_name, remaining })
+          }
+        }
+
+        if (lowStockItems.length > 0) {
+          await sendLowStockAlert(lowStockItems)
+        }
+      }
+    } catch (err) {
+      console.error('[Stock Alert] ตรวจสต็อกล้มเหลว:', err.message)
     }
 
     return reply.send({
@@ -170,7 +209,6 @@ async function orderRoutes(fastify) {
     const { id } = req.params
     const { items, payment_method } = req.body
 
-    // ── Input Validation ──
     if (!items || !Array.isArray(items) || items.length === 0) {
       return reply.code(400).send({ error: 'items ต้องมีอย่างน้อย 1 รายการ' })
     }

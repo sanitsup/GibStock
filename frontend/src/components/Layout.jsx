@@ -1,4 +1,4 @@
-import { Outlet, NavLink } from 'react-router-dom'
+import { Outlet, NavLink, useNavigate } from 'react-router-dom'
 import { ShoppingCart, Package, BarChart2, Wallet, TrendingUp } from 'lucide-react'
 
 const navItems = [
@@ -10,10 +10,22 @@ const navItems = [
 ]
 
 export default function Layout() {
+  const navigate = useNavigate()
+
+  function handleLogoClick() {
+    navigate(0)
+  }
+
   return (
     <div className="flex h-screen bg-slate-50">
       <aside className="w-20 bg-sky-100 flex flex-col items-center py-6 gap-6 shadow-xl">
-        <img src="/gibstock_logo.svg" alt="GibStock" className="w-12 h-12 rounded-full object-cover" />
+        <img
+          src="/gibstock_logo.svg"
+          alt="GibStock"
+          className="w-12 h-12 rounded-full object-cover cursor-pointer hover:opacity-80 active:scale-95 transition-all"
+          onClick={handleLogoClick}
+          title="กดเพื่อรีเฟรชหน้าจอ"
+        />
         <nav className="flex flex-col gap-2 w-full px-2">
           {navItems.map(({ to, icon: Icon, label }) => (
             <NavLink
