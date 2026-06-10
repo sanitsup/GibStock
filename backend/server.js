@@ -1,7 +1,6 @@
 require('dotenv').config()
 const path = require('path')
 const fastify = require('fastify')({ logger: true })
-const cron = require('node-cron')
 const supabase = require('./src/services/supabase')
 const { sendDailySummary } = require('./src/services/telegram')
 
@@ -17,7 +16,6 @@ fastify.register(require('./src/routes/expenses'))
 fastify.register(require('./src/routes/reports'))
 fastify.register(require('./src/routes/analytics'))
 
-// ─── Health Check (ตรวจสอบ DB จริง) ──────────────────────────────────────
 fastify.get('/health', async (req, reply) => {
   const start = Date.now()
   try {
@@ -50,7 +48,6 @@ fastify.get('/health', async (req, reply) => {
   }
 })
 
-// ─── Build & Send Daily Summary ───────────────────────────────────────────
 async function buildAndSendSummary() {
   const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Bangkok' })
 
@@ -88,8 +85,8 @@ async function buildAndSendSummary() {
     .sort((a, b) => b.total_qty - a.total_qty)
     .slice(0, 3)
 
-  const totalRevenue  = orders?.reduce((s, o) => s + Number(o.grand_total), 0) || 0
-  const totalExpenses = expenses?.reduce((s, e) => s + Number(e.amount), 0) || 0
+  const totalRevenue   = orders?.reduce((s, o) => s + Number(o.grand_total), 0) || 0
+  const totalExpenses  = expenses?.reduce((s, e) => s + Number(e.amount), 0) || 0
   const totalFreeItems = freeData?.reduce((s, f) => s + f.qty_sales, 0) || 0
 
   await sendDailySummary({
@@ -103,18 +100,6 @@ async function buildAndSendSummary() {
   }, today)
 }
 
-// ─── Cron: สรุปยอดอัตโนมัติ 20:15 น. (Asia/Bangkok) ─────────────────────
-cron.schedule('15 20 * * *', async () => {
-  console.log('[Cron] ส่งสรุปยอดประจำวัน 20:15 น.')
-  try {
-    await buildAndSendSummary()
-    console.log('[Cron] ส่งสรุปยอดสำเร็จ')
-  } catch (err) {
-    console.error('[Cron] ส่งสรุปยอดล้มเหลว:', err.message)
-  }
-}, { timezone: 'Asia/Bangkok' })
-
-// ─── Endpoints สำหรับเรียกใช้งาน ──────────────────────────────────────────
 fastify.get('/api/daily-summary', async (req, reply) => {
   try {
     await buildAndSendSummary()
@@ -133,7 +118,6 @@ fastify.get('/api/test-summary', async (req, reply) => {
   }
 })
 
-// ─── Start Server ──────────────────────────────────────────────────────────
 fastify.listen(
   { port: process.env.PORT || 3000, host: '0.0.0.0' },
   (err) => {
