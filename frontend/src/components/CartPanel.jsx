@@ -7,14 +7,14 @@ import FreeItemModal from './FreeItemModal'
 const calcPromotion = (cart) => {
   const totalQty = cart.reduce((sum, i) => sum + i.qty, 0)
   const promoQty = cart
-    .filter(i => Number(i.price) === 100)
+    .filter(i => Number(i.order_price) === 100)
     .reduce((sum, i) => sum + i.qty, 0)
   const freeQty = Math.floor(promoQty / 10)
-  const grandTotal = cart.reduce((sum, i) => sum + (Number(i.price) * i.qty), 0)
+  const grandTotal = cart.reduce((sum, i) => sum + (Number(i.order_price) * i.qty), 0)
   return { totalQty, promoQty, freeQty, grandTotal }
 }
 
-export default function CartPanel({ cart, setCart, clearCart, onOrderSuccess, onClose, isMobile }) {
+export default function CartPanel({ cart, setCart, clearCart, onOrderSuccess, onClose, isMobile }){
   const [paymentMethod, setPaymentMethod] = useState('cash')
   const [loading, setLoading] = useState(false)
   const [successMsg, setSuccessMsg] = useState('')
@@ -23,12 +23,13 @@ export default function CartPanel({ cart, setCart, clearCart, onOrderSuccess, on
 
   const { totalQty, promoQty, freeQty, grandTotal } = calcPromotion(cart)
 
-  const updateQty = (product_id, delta) => {
-    setCart(prev =>
-      prev
-        .map(i => i.product_id === product_id ? { ...i, qty: i.qty + delta } : i)
-        .filter(i => i.qty > 0)
-    )
+  const updateQty = (cartKey, delta, product_id) => {
+    setCart(prev => {
+      const updated = prev.map(i =>
+        i.cartKey === cartKey ? { ...i, qty: i.qty + delta } : i
+      ).filter(i => i.qty > 0)
+      return updated
+    })
     setFreeItems([])
   }
 
@@ -50,8 +51,10 @@ export default function CartPanel({ cart, setCart, clearCart, onOrderSuccess, on
         items: [
           ...cart.map(i => ({
             product_id_ref: i.product_id,
-            product_name: i.product_name,
-            order_price: i.price,
+            product_name: i.isDiscounted
+              ? `${i.product_name} (ชำรุด)`
+              : i.product_name,
+            order_price: Number(i.order_price),
             qty_sales: i.qty
           })),
           ...freeItems.map(i => ({
@@ -119,20 +122,36 @@ export default function CartPanel({ cart, setCart, clearCart, onOrderSuccess, on
             </div>
           ) : (
             cart.map(item => (
-              <div key={item.product_id}
-                className="flex items-center gap-3 bg-sky-50 rounded-xl p-3">
+              <div
+                key={item.cartKey}
+                className={`flex items-center gap-3 rounded-xl p-3 ${
+                  item.isDiscounted
+                    ? 'bg-orange-50 border border-orange-100'
+                    : 'bg-sky-50'
+                }`}
+              >
                 <span className="text-xl">{getProductIcon(item.product_name)}</span>
                 <div className="flex-1 min-w-0">
                   <div className="text-sm font-medium text-slate-700 truncate">
                     {item.product_name}
+                    {item.isDiscounted && (
+                      <span className="ml-1 text-xs text-orange-400 font-normal">ชำรุด</span>
+                    )}
                   </div>
-                  <div className="text-sky-500 text-sm font-bold">
-                    ฿{(item.qty * item.price).toLocaleString()}
+                  <div className="flex items-center gap-1.5">
+                    {item.isDiscounted && (
+                      <span className="text-slate-300 text-xs line-through">
+                        ฿{Number(item.originalPrice).toLocaleString()}
+                      </span>
+                    )}
+                    <span className={`text-sm font-bold ${item.isDiscounted ? 'text-orange-400' : 'text-sky-500'}`}>
+                      ฿{(item.qty * Number(item.order_price)).toLocaleString()}
+                    </span>
                   </div>
                 </div>
                 <div className="flex items-center gap-1">
                   <button
-                    onClick={() => updateQty(item.product_id, -1)}
+                    onClick={() => updateQty(item.cartKey, -1)}
                     className="w-6 h-6 rounded-full bg-sky-200 hover:bg-sky-300
                                flex items-center justify-center text-sky-700"
                   >
@@ -147,7 +166,7 @@ export default function CartPanel({ cart, setCart, clearCart, onOrderSuccess, on
                       if (!val || val < 1) return
                       setCart(prev =>
                         prev.map(i =>
-                          i.product_id === item.product_id ? { ...i, qty: val } : i
+                          i.cartKey === item.cartKey ? { ...i, qty: val } : i
                         )
                       )
                       setFreeItems([])
@@ -157,7 +176,7 @@ export default function CartPanel({ cart, setCart, clearCart, onOrderSuccess, on
                               focus:border-sky-400 bg-white"
                   />
                   <button
-                    onClick={() => updateQty(item.product_id, 1)}
+                    onClick={() => updateQty(item.cartKey, 1)}
                     className="w-6 h-6 rounded-full bg-sky-200 hover:bg-sky-300
                                flex items-center justify-center text-sky-700"
                   >

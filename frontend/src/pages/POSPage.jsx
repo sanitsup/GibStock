@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { getProducts, getStock, updateProductStatus } from '../services/api'
 import CartPanel from '../components/CartPanel'
-import { ShoppingBag, ShoppingCart, RefreshCw } from 'lucide-react'
+import { ShoppingBag, ShoppingCart, RefreshCw, Scissors } from 'lucide-react'
 import { getProductIcon } from '../utils/productIcon'
 import { useNavigate } from 'react-router-dom'
 
@@ -13,6 +13,7 @@ export default function POSPage() {
   const [loadError, setLoadError] = useState(false)
   const [dialog, setDialog] = useState(null)
   const [cartOpen, setCartOpen] = useState(false)
+  const [discountModal, setDiscountModal] = useState(null)
   const navigate = useNavigate()
   const slowTimer = useRef(null)
 
@@ -22,10 +23,7 @@ export default function POSPage() {
     setLoading(true)
     setLoadError(false)
     setLoadingSlow(false)
-
-    // ถ้าโหลดนานเกิน 5 วินาที แสดงข้อความ wake up
     slowTimer.current = setTimeout(() => setLoadingSlow(true), 5000)
-
     try {
       const [pRes, sRes] = await Promise.all([getProducts(), getStock()])
       clearTimeout(slowTimer.current)
@@ -47,23 +45,57 @@ export default function POSPage() {
     }
   }
 
-  const addToCart = (product) => {
-    const inCart = cart.find(i => i.product_id === product.product_id)
-    const currentQty = inCart ? inCart.qty : 0
-    if (currentQty >= product.remaining) {
+  const addToCart = (product, customPrice = null) => {
+    const price = customPrice !== null ? customPrice : product.price
+    const cartKey = customPrice !== null
+      ? `${product.product_id}_disc_${customPrice}`
+      : String(product.product_id)
+
+    const totalInCart = cart
+      .filter(i => i.product_id === product.product_id)
+      .reduce((sum, i) => sum + i.qty, 0)
+
+    if (totalInCart >= product.remaining) {
       alert(`⚠️ สต็อก ${product.product_name} เหลือแค่ ${product.remaining} ชิ้น`)
       return
     }
+
     setCart(prev => {
-      const existing = prev.find(i => i.product_id === product.product_id)
+      const existing = prev.find(i => i.cartKey === cartKey)
       if (existing) {
         return prev.map(i =>
-          i.product_id === product.product_id
-            ? { ...i, qty: i.qty + 1 } : i
+          i.cartKey === cartKey ? { ...i, qty: i.qty + 1 } : i
         )
       }
-      return [...prev, { ...product, qty: 1 }]
+      return [...prev, {
+        ...product,
+        price: price,
+        order_price: price,
+        cartKey,
+        isDiscounted: customPrice !== null,
+        originalPrice: product.price,
+        qty: 1
+      }]
     })
+  }
+
+  const openDiscountModal = (e, product) => {
+    e.stopPropagation()
+    setDiscountModal({ product, customPrice: '' })
+  }
+
+  const confirmDiscount = () => {
+    const price = Number(discountModal.customPrice)
+    if (!price || price <= 0) {
+      alert('กรุณากรอกราคาที่ถูกต้อง')
+      return
+    }
+    if (price >= Number(discountModal.product.price)) {
+      alert('ราคาลดต้องน้อยกว่าราคาปกติ')
+      return
+    }
+    addToCart(discountModal.product, price)
+    setDiscountModal(null)
   }
 
   const handleDialogAction = async (action) => {
@@ -133,21 +165,35 @@ export default function POSPage() {
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
               {activeProducts.map(product => (
-                <button
-                  key={product.product_id}
-                  onClick={() => addToCart(product)}
-                  className="bg-white rounded-2xl p-4 shadow-sm border border-sky-100
-                             hover:border-sky-300 hover:shadow-md transition-all text-left"
-                >
-                  <div className="text-3xl mb-2">{getProductIcon(product.product_name)}</div>
-                  <div className="font-semibold text-slate-700 text-sm">{product.product_name}</div>
-                  <div className="text-sky-500 font-bold mt-1">
-                    ฿{Number(product.price).toLocaleString()}
-                  </div>
-                  <div className="text-xs text-slate-400 mt-1">
-                    เหลือ {product.remaining} ชิ้น
-                  </div>
-                </button>
+                <div key={product.product_id} className="relative">
+                  <button
+                    onClick={() => addToCart(product)}
+                    className="w-full bg-white rounded-2xl p-4 shadow-sm border border-sky-100
+                               hover:border-sky-300 hover:shadow-md transition-all text-left"
+                  >
+                    <div className="text-3xl mb-2">{getProductIcon(product.product_name)}</div>
+                    <div className="font-semibold text-slate-700 text-sm">{product.product_name}</div>
+                    <div className="text-sky-500 font-bold mt-1">
+                      ฿{Number(product.price).toLocaleString()}
+                    </div>
+                    <div className="text-xs text-slate-400 mt-1">
+                      เหลือ {product.remaining} ชิ้น
+                    </div>
+                    {product.remaining <= 5 && (
+                      <div className="text-xs text-red-400 font-medium mt-0.5">ใกล้หมด!</div>
+                    )}
+                  </button>
+
+                  <button
+                    onClick={(e) => openDiscountModal(e, product)}
+                    title="ลดราคาสินค้าชำรุด"
+                    className="absolute top-2 right-2 w-7 h-7 flex items-center justify-center
+                               bg-orange-50 hover:bg-orange-100 text-orange-400 hover:text-orange-500
+                               rounded-lg transition-all border border-orange-100"
+                  >
+                    <Scissors size={13} />
+                  </button>
+                </div>
               ))}
             </div>
           )}
@@ -217,29 +263,74 @@ export default function POSPage() {
               สินค้าหมดสต็อก กรุณาเลือกการดำเนินการ
             </p>
             <div className="flex flex-col gap-2">
-              <button
-                onClick={() => handleDialogAction('stock')}
-                className="w-full py-3 bg-sky-500 hover:bg-sky-600 text-white rounded-xl font-bold text-sm"
-              >
+              <button onClick={() => handleDialogAction('stock')}
+                className="w-full py-3 bg-sky-500 hover:bg-sky-600 text-white rounded-xl font-bold text-sm">
                 🔄 เติมสต็อก
               </button>
-              <button
-                onClick={() => handleDialogAction('hidden')}
-                className="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl font-medium text-sm"
-              >
+              <button onClick={() => handleDialogAction('hidden')}
+                className="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl font-medium text-sm">
                 🙈 ซ่อนสินค้า
               </button>
-              <button
-                onClick={() => handleDialogAction('inactive')}
-                className="w-full py-3 bg-red-50 hover:bg-red-100 text-red-500 rounded-xl font-medium text-sm"
-              >
+              <button onClick={() => handleDialogAction('inactive')}
+                className="w-full py-3 bg-red-50 hover:bg-red-100 text-red-500 rounded-xl font-medium text-sm">
                 🚫 ยกเลิกการขาย
               </button>
-              <button
-                onClick={() => setDialog(null)}
-                className="w-full py-2 text-slate-400 text-sm hover:text-slate-600"
-              >
+              <button onClick={() => setDialog(null)}
+                className="w-full py-2 text-slate-400 text-sm hover:text-slate-600">
                 ปิด
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {discountModal && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm p-6">
+            <div className="text-4xl text-center mb-2">
+              {getProductIcon(discountModal.product.product_name)}
+            </div>
+            <h2 className="font-bold text-slate-700 text-center text-lg mb-1">
+              {discountModal.product.product_name}
+            </h2>
+            <p className="text-center text-sm text-slate-400 mb-4">สินค้าชำรุด — กรอกราคาที่ต้องการขาย</p>
+
+            <div className="bg-slate-50 rounded-xl px-4 py-2 mb-4 text-center">
+              <span className="text-xs text-slate-400">ราคาปกติ </span>
+              <span className="text-slate-500 font-semibold line-through">
+                ฿{Number(discountModal.product.price).toLocaleString()}
+              </span>
+            </div>
+
+            <div className="relative mb-5">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">฿</span>
+              <input
+                type="number"
+                min="1"
+                max={Number(discountModal.product.price) - 1}
+                value={discountModal.customPrice}
+                onChange={e => setDiscountModal(prev => ({ ...prev, customPrice: e.target.value }))}
+                onKeyDown={e => e.key === 'Enter' && confirmDiscount()}
+                placeholder="กรอกราคาใหม่"
+                autoFocus
+                className="w-full border border-slate-200 rounded-xl pl-8 pr-4 py-3
+                           text-lg font-bold text-orange-500 focus:outline-none
+                           focus:ring-2 focus:ring-orange-200 focus:border-orange-300"
+              />
+            </div>
+
+            <div className="flex gap-2">
+              <button
+                onClick={() => setDiscountModal(null)}
+                className="flex-1 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl font-medium text-sm"
+              >
+                ยกเลิก
+              </button>
+              <button
+                onClick={confirmDiscount}
+                className="flex-1 py-3 bg-orange-400 hover:bg-orange-500 text-white rounded-xl font-bold text-sm"
+              >
+                เพิ่มลงตะกร้า
               </button>
             </div>
           </div>

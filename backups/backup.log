@@ -1,0 +1,72 @@
+◇ injected env (5) from Users/evokestudio/Documents/GibStock/backend/.env // tip: ⌘ enable debugging { debug: true }
+
+🗄️  GibStock Database Backup
+📅 เวลา: 2026-06-09_22-18-13
+📁 บันทึกที่: /Users/evokestudio/Documents/GibStock/backups/2026-06-09_22-18-13
+
+  ⏳ product_type   ✅ 9 rows
+  ⏳ stock          ✅ 14 rows
+  ⏳ orders         ✅ 73 rows
+  ⏳ order_detail   ✅ 90 rows
+  ⏳ expenses       ✅ 0 rows
+
+──────────────────────────────
+📊 สรุปผล:
+  ✅ product_type    9 rows
+  ✅ stock           14 rows
+  ✅ orders          73 rows
+  ✅ order_detail    90 rows
+  ✅ expenses        0 rows
+  รวมทั้งหมด: 186 rows
+──────────────────────────────
+
+✅ Backup สำเร็จ! Telegram แจ้งแล้ว
+
+◇ injected env (5) from Users/evokestudio/Documents/GibStock/backend/.env // tip: ⌘ suppress logs { quiet: true }
+
+🗄️  GibStock Database Backup
+📅 เวลา: 2026-06-09_23-00-00
+📁 บันทึกที่: /Users/evokestudio/Documents/GibStock/backups/2026-06-09_23-00-00
+
+  ⏳ product_type   ✅ 9 rows
+  ⏳ stock          ✅ 14 rows
+  ⏳ orders         ✅ 73 rows
+  ⏳ order_detail   ✅ 90 rows
+  ⏳ expenses       ✅ 0 rows
+
+──────────────────────────────
+📊 สรุปผล:
+  ✅ product_type    9 rows
+  ✅ stock           14 rows
+  ✅ orders          73 rows
+  ✅ order_detail    90 rows
+  ✅ expenses        0 rows
+  รวมทั้งหมด: 186 rows
+──────────────────────────────
+
+✅ Backup สำเร็จ! Telegram แจ้งแล้ว
+
+◇ injected env (5) from Users/evokestudio/Documents/GibStock/backend/.env // tip: ◈ encrypted .env [www.dotenvx.com]
+
+🗄️  GibStock Database Backup
+📅 เวลา: 2026-06-10_23-00-00
+📁 บันทึกที่: /Users/evokestudio/Documents/GibStock/backups/2026-06-10_23-00-00
+
+  ⏳ product_type   ✅ 10 rows
+  ⏳ stock          ✅ 20 rows
+  ⏳ orders         ✅ 113 rows
+  ⏳ order_detail   ✅ 141 rows
+  ⏳ expenses       ✅ 0 rows
+
+──────────────────────────────
+📊 สรุปผล:
+  ✅ product_type    10 rows
+  ✅ stock           20 rows
+  ✅ orders          113 rows
+  ✅ order_detail    141 rows
+  ✅ expenses        0 rows
+  รวมทั้งหมด: 284 rows
+──────────────────────────────
+
+✅ Backup สำเร็จ! Telegram แจ้งแล้ว
+

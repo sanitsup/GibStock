@@ -1,0 +1,74 @@
+[
+  {
+    "product_id": 1,
+    "product_name": "เสื้อขาว",
+    "price": 100,
+    "initial_stock": 0,
+    "created_at": "2026-06-08T09:04:57.537093",
+    "status": "active"
+  },
+  {
+    "product_id": 2,
+    "product_name": "เสื้อคลุม",
+    "price": 100,
+    "initial_stock": 0,
+    "created_at": "2026-06-08T09:05:13.797892",
+    "status": "active"
+  },
+  {
+    "product_id": 3,
+    "product_name": "เสื้อดำ",
+    "price": 100,
+    "initial_stock": 0,
+    "created_at": "2026-06-08T09:17:27.959191",
+    "status": "active"
+  },
+  {
+    "product_id": 4,
+    "product_name": "แฟชั่นรวมวัย",
+    "price": 100,
+    "initial_stock": 0,
+    "created_at": "2026-06-08T09:17:50.814706",
+    "status": "active"
+  },
+  {
+    "product_id": 5,
+    "product_name": "กระโปรง",
+    "price": 100,
+    "initial_stock": 0,
+    "created_at": "2026-06-08T09:18:18.088354",
+    "status": "active"
+  },
+  {
+    "product_id": 6,
+    "product_name": "เสื้อบนหุ่น",
+    "price": 100,
+    "initial_stock": 0,
+    "created_at": "2026-06-08T09:19:07.007583",
+    "status": "active"
+  },
+  {
+    "product_id": 7,
+    "product_name": "เสื้อเด็ก",
+    "price": 50,
+    "initial_stock": 0,
+    "created_at": "2026-06-08T09:19:35.602131",
+    "status": "active"
+  },
+  {
+    "product_id": 8,
+    "product_name": "เดรส",
+    "price": 150,
+    "initial_stock": 0,
+    "created_at": "2026-06-08T22:34:10.609789",
+    "status": "active"
+  },
+  {
+    "product_id": 9,
+    "product_name": "เสื้อผู้ชาย",
+    "price": 100,
+    "initial_stock": 0,
+    "created_at": "2026-06-08T22:37:06.69633",
+    "status": "active"
+  }
+]
