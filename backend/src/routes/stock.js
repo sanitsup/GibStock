@@ -6,6 +6,7 @@ async function stockRoutes(fastify) {
     const { data: products, error } = await supabase
       .from('product_type')
       .select('product_id, product_name, price, initial_stock')
+
     if (error) return reply.code(500).send({ error: error.message })
 
     const stockList = await Promise.all(
@@ -19,7 +20,8 @@ async function stockRoutes(fastify) {
           .from('order_detail')
           .select('qty_sales')
           .eq('product_id_ref', product.product_id)
-          .eq('free_itemtype', false)
+          // ✅ ลบ .eq('free_itemtype', false) ออก
+          // เพื่อให้ของแถมตัดสต็อกด้วย (แค่ไม่คิดราคา)
 
         const totalAdded = stockIn?.reduce((s, i) => s + i.qty_added, 0) || 0
         const totalSold = stockOut?.reduce((s, i) => s + i.qty_sales, 0) || 0
@@ -32,10 +34,11 @@ async function stockRoutes(fastify) {
           initial_stock: product.initial_stock,
           total_added: totalAdded,
           total_sold: totalSold,
-          remaining  // ← แก้ชื่อให้ตรงกับ Frontend
+          remaining
         }
       })
     )
+
     return reply.send(stockList)
   })
 
@@ -43,7 +46,6 @@ async function stockRoutes(fastify) {
   fastify.post('/api/stock', async (req, reply) => {
     const { product_id, qty_added } = req.body
 
-    // ดึง product_name จาก product_id
     const { data: product, error: productError } = await supabase
       .from('product_type')
       .select('product_name')
@@ -74,6 +76,7 @@ async function stockRoutes(fastify) {
       .select('*')
       .order('added_at', { ascending: false })
       .limit(50)
+
     if (error) return reply.code(500).send({ error: error.message })
     return reply.send(data)
   })

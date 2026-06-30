@@ -1,0 +1,1782 @@
+[
+  {
+    "detail_id": 1,
+    "order_id": 1,
+    "datetime": "2026-06-08T13:43:17.503041",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 5,
+    "subtotal": 500
+  },
+  {
+    "detail_id": 2,
+    "order_id": 1,
+    "datetime": "2026-06-08T13:43:17.503041",
+    "product_id_ref": 1,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 3,
+    "order_id": 2,
+    "datetime": "2026-06-08T13:52:03.375595",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 4,
+    "order_id": 3,
+    "datetime": "2026-06-08T13:52:38.269377",
+    "product_id_ref": 3,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 5,
+    "order_id": 4,
+    "datetime": "2026-06-08T13:52:52.026868",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 6,
+    "order_id": 5,
+    "datetime": "2026-06-08T13:53:32.015129",
+    "product_id_ref": 3,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 7,
+    "order_id": 6,
+    "datetime": "2026-06-08T13:53:43.576936",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 8,
+    "order_id": 7,
+    "datetime": "2026-06-08T13:53:50.725956",
+    "product_id_ref": 5,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 9,
+    "order_id": 8,
+    "datetime": "2026-06-08T13:56:45.394361",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 10,
+    "order_id": 8,
+    "datetime": "2026-06-08T13:56:45.394361",
+    "product_id_ref": 2,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 11,
+    "order_id": 8,
+    "datetime": "2026-06-08T13:56:45.394361",
+    "product_id_ref": 3,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 12,
+    "order_id": 8,
+    "datetime": "2026-06-08T13:56:45.394361",
+    "product_id_ref": 1,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 13,
+    "order_id": 9,
+    "datetime": "2026-06-08T15:19:52.464799",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 14,
+    "order_id": 10,
+    "datetime": "2026-06-08T16:13:08.944774",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 3,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 15,
+    "order_id": 11,
+    "datetime": "2026-06-08T16:18:00.542332",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 16,
+    "order_id": 12,
+    "datetime": "2026-06-08T16:24:08.220845",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 17,
+    "order_id": 13,
+    "datetime": "2026-06-08T16:50:03.781905",
+    "product_id_ref": 3,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 18,
+    "order_id": 14,
+    "datetime": "2026-06-08T16:59:26.993606",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 19,
+    "order_id": 15,
+    "datetime": "2026-06-08T17:01:02.283064",
+    "product_id_ref": 2,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 20,
+    "order_id": 16,
+    "datetime": "2026-06-08T17:17:24.930558",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 21,
+    "order_id": 17,
+    "datetime": "2026-06-08T17:58:45.38045",
+    "product_id_ref": 3,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 22,
+    "order_id": 18,
+    "datetime": "2026-06-08T18:12:55.627415",
+    "product_id_ref": 2,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 23,
+    "order_id": 19,
+    "datetime": "2026-06-08T18:14:59.467287",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 24,
+    "order_id": 20,
+    "datetime": "2026-06-08T18:19:56.196945",
+    "product_id_ref": 3,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 25,
+    "order_id": 21,
+    "datetime": "2026-06-08T18:31:53.347489",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 26,
+    "order_id": 22,
+    "datetime": "2026-06-08T19:01:01.378838",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 28,
+    "order_id": 24,
+    "datetime": "2026-06-09T10:14:36.227041",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 29,
+    "order_id": 25,
+    "datetime": "2026-06-09T10:23:44.745782",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 30,
+    "order_id": 26,
+    "datetime": "2026-06-09T10:23:50.764893",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 31,
+    "order_id": 27,
+    "datetime": "2026-06-09T11:21:11.301142",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 32,
+    "order_id": 28,
+    "datetime": "2026-06-09T11:21:45.170608",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 2,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 33,
+    "order_id": 29,
+    "datetime": "2026-06-09T11:22:37.814296",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 10,
+    "subtotal": 1000
+  },
+  {
+    "detail_id": 34,
+    "order_id": 29,
+    "datetime": "2026-06-09T11:22:37.814296",
+    "product_id_ref": 9,
+    "free_itemtype": true,
+    "order_price": 0,
+    "qty_sales": 1,
+    "subtotal": 0
+  },
+  {
+    "detail_id": 35,
+    "order_id": 30,
+    "datetime": "2026-06-09T11:22:59.796823",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 36,
+    "order_id": 31,
+    "datetime": "2026-06-09T12:18:01.839686",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 37,
+    "order_id": 32,
+    "datetime": "2026-06-09T12:18:10.988013",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 5,
+    "subtotal": 500
+  },
+  {
+    "detail_id": 38,
+    "order_id": 33,
+    "datetime": "2026-06-09T12:19:15.938149",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 1,
+    "subtotal": 150
+  },
+  {
+    "detail_id": 39,
+    "order_id": 34,
+    "datetime": "2026-06-09T12:19:24.735176",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 40,
+    "order_id": 35,
+    "datetime": "2026-06-09T12:19:33.533965",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 3,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 41,
+    "order_id": 36,
+    "datetime": "2026-06-09T12:20:13.797958",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 42,
+    "order_id": 37,
+    "datetime": "2026-06-09T12:22:01.768618",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 1,
+    "subtotal": 150
+  },
+  {
+    "detail_id": 43,
+    "order_id": 37,
+    "datetime": "2026-06-09T12:22:01.768618",
+    "product_id_ref": 3,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 44,
+    "order_id": 37,
+    "datetime": "2026-06-09T12:22:01.768618",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 45,
+    "order_id": 38,
+    "datetime": "2026-06-09T12:29:05.108807",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 46,
+    "order_id": 39,
+    "datetime": "2026-06-09T12:44:20.625074",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 6,
+    "subtotal": 900
+  },
+  {
+    "detail_id": 47,
+    "order_id": 40,
+    "datetime": "2026-06-09T13:55:31.832098",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 2,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 48,
+    "order_id": 41,
+    "datetime": "2026-06-09T14:02:45.710755",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 49,
+    "order_id": 41,
+    "datetime": "2026-06-09T14:02:45.710755",
+    "product_id_ref": 3,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 50,
+    "order_id": 42,
+    "datetime": "2026-06-09T14:05:00.704258",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 1,
+    "subtotal": 150
+  },
+  {
+    "detail_id": 51,
+    "order_id": 42,
+    "datetime": "2026-06-09T14:05:00.704258",
+    "product_id_ref": 2,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 4,
+    "subtotal": 400
+  },
+  {
+    "detail_id": 52,
+    "order_id": 43,
+    "datetime": "2026-06-09T14:12:21.599349",
+    "product_id_ref": 1,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 53,
+    "order_id": 44,
+    "datetime": "2026-06-09T14:12:49.69827",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 54,
+    "order_id": 45,
+    "datetime": "2026-06-09T14:13:02.819807",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 1,
+    "subtotal": 150
+  },
+  {
+    "detail_id": 55,
+    "order_id": 45,
+    "datetime": "2026-06-09T14:13:02.819807",
+    "product_id_ref": 5,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 56,
+    "order_id": 46,
+    "datetime": "2026-06-09T14:45:05.605265",
+    "product_id_ref": 3,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 57,
+    "order_id": 47,
+    "datetime": "2026-06-09T14:46:23.54505",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 58,
+    "order_id": 47,
+    "datetime": "2026-06-09T14:46:23.54505",
+    "product_id_ref": 3,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 59,
+    "order_id": 47,
+    "datetime": "2026-06-09T14:46:23.54505",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 1,
+    "subtotal": 150
+  },
+  {
+    "detail_id": 60,
+    "order_id": 48,
+    "datetime": "2026-06-09T14:46:33.416611",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 3,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 61,
+    "order_id": 49,
+    "datetime": "2026-06-09T14:49:07.190153",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 2,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 62,
+    "order_id": 50,
+    "datetime": "2026-06-09T14:54:40.192808",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 3,
+    "subtotal": 450
+  },
+  {
+    "detail_id": 63,
+    "order_id": 51,
+    "datetime": "2026-06-09T14:57:58.579267",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 64,
+    "order_id": 52,
+    "datetime": "2026-06-09T15:11:24.437288",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 65,
+    "order_id": 52,
+    "datetime": "2026-06-09T15:11:24.437288",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 66,
+    "order_id": 53,
+    "datetime": "2026-06-09T15:25:16.814512",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 10,
+    "subtotal": 1500
+  },
+  {
+    "detail_id": 67,
+    "order_id": 54,
+    "datetime": "2026-06-09T15:27:25.676571",
+    "product_id_ref": 1,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 68,
+    "order_id": 55,
+    "datetime": "2026-06-09T15:36:54.409209",
+    "product_id_ref": 1,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 69,
+    "order_id": 56,
+    "datetime": "2026-06-09T16:25:39.408149",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 3,
+    "subtotal": 450
+  },
+  {
+    "detail_id": 70,
+    "order_id": 56,
+    "datetime": "2026-06-09T16:25:39.408149",
+    "product_id_ref": 5,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 71,
+    "order_id": 57,
+    "datetime": "2026-06-09T16:25:45.673427",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 1,
+    "subtotal": 150
+  },
+  {
+    "detail_id": 72,
+    "order_id": 58,
+    "datetime": "2026-06-09T16:31:12.35333",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 3,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 73,
+    "order_id": 59,
+    "datetime": "2026-06-09T16:31:18.391518",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 74,
+    "order_id": 60,
+    "datetime": "2026-06-09T16:31:49.797381",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 75,
+    "order_id": 61,
+    "datetime": "2026-06-09T16:33:10.620242",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 76,
+    "order_id": 62,
+    "datetime": "2026-06-09T16:38:17.725081",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 77,
+    "order_id": 63,
+    "datetime": "2026-06-09T16:41:35.926827",
+    "product_id_ref": 5,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 78,
+    "order_id": 64,
+    "datetime": "2026-06-09T16:45:29.307096",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 1,
+    "subtotal": 150
+  },
+  {
+    "detail_id": 79,
+    "order_id": 65,
+    "datetime": "2026-06-09T16:55:07.184966",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 2,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 80,
+    "order_id": 66,
+    "datetime": "2026-06-09T17:01:32.45853",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 81,
+    "order_id": 67,
+    "datetime": "2026-06-09T18:34:08.398947",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 82,
+    "order_id": 67,
+    "datetime": "2026-06-09T18:34:08.398947",
+    "product_id_ref": 3,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 83,
+    "order_id": 68,
+    "datetime": "2026-06-09T18:34:14.680546",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 84,
+    "order_id": 69,
+    "datetime": "2026-06-09T18:39:32.955178",
+    "product_id_ref": 5,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 85,
+    "order_id": 70,
+    "datetime": "2026-06-09T18:41:05.97668",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 1,
+    "subtotal": 150
+  },
+  {
+    "detail_id": 86,
+    "order_id": 71,
+    "datetime": "2026-06-09T18:41:50.459713",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 3,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 92,
+    "order_id": 23,
+    "datetime": "2026-06-09T20:38:58.9969",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 93,
+    "order_id": 73,
+    "datetime": "2026-06-09T20:50:53.713544",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 2,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 94,
+    "order_id": 73,
+    "datetime": "2026-06-09T20:50:53.713544",
+    "product_id_ref": 2,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 95,
+    "order_id": 73,
+    "datetime": "2026-06-09T20:50:53.713544",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 96,
+    "order_id": 72,
+    "datetime": "2026-06-09T21:48:11.805029",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 4,
+    "subtotal": 400
+  },
+  {
+    "detail_id": 99,
+    "order_id": 76,
+    "datetime": "2026-06-10T12:24:10.255849",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 100,
+    "order_id": 77,
+    "datetime": "2026-06-10T12:24:18.827796",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 101,
+    "order_id": 78,
+    "datetime": "2026-06-10T12:24:25.423444",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 102,
+    "order_id": 79,
+    "datetime": "2026-06-10T12:24:47.666589",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 1,
+    "subtotal": 150
+  },
+  {
+    "detail_id": 103,
+    "order_id": 80,
+    "datetime": "2026-06-10T12:24:56.416812",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 4,
+    "subtotal": 400
+  },
+  {
+    "detail_id": 104,
+    "order_id": 81,
+    "datetime": "2026-06-10T12:25:01.995909",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 105,
+    "order_id": 82,
+    "datetime": "2026-06-10T12:25:15.106501",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 106,
+    "order_id": 82,
+    "datetime": "2026-06-10T12:25:15.106501",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 1,
+    "subtotal": 150
+  },
+  {
+    "detail_id": 107,
+    "order_id": 83,
+    "datetime": "2026-06-10T12:40:36.246905",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 1,
+    "subtotal": 150
+  },
+  {
+    "detail_id": 108,
+    "order_id": 83,
+    "datetime": "2026-06-10T12:40:36.246905",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 3,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 109,
+    "order_id": 84,
+    "datetime": "2026-06-10T13:08:14.194424",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 2,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 110,
+    "order_id": 84,
+    "datetime": "2026-06-10T13:08:14.194424",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 111,
+    "order_id": 85,
+    "datetime": "2026-06-10T13:19:21.981743",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 112,
+    "order_id": 86,
+    "datetime": "2026-06-10T13:20:59.878605",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 113,
+    "order_id": 87,
+    "datetime": "2026-06-10T13:27:39.877573",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 3,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 114,
+    "order_id": 88,
+    "datetime": "2026-06-10T13:27:48.280806",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 115,
+    "order_id": 88,
+    "datetime": "2026-06-10T13:27:48.280806",
+    "product_id_ref": 3,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 116,
+    "order_id": 89,
+    "datetime": "2026-06-10T14:11:50.623846",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 117,
+    "order_id": 90,
+    "datetime": "2026-06-10T14:15:42.598064",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 118,
+    "order_id": 91,
+    "datetime": "2026-06-10T14:19:01.149298",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 119,
+    "order_id": 92,
+    "datetime": "2026-06-10T14:19:29.613683",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 3,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 120,
+    "order_id": 93,
+    "datetime": "2026-06-10T14:33:50.13884",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 121,
+    "order_id": 94,
+    "datetime": "2026-06-10T14:36:26.835375",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 123,
+    "order_id": 96,
+    "datetime": "2026-06-10T14:40:43.964285",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 124,
+    "order_id": 97,
+    "datetime": "2026-06-10T14:49:55.499842",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 125,
+    "order_id": 98,
+    "datetime": "2026-06-10T14:55:37.00657",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 126,
+    "order_id": 99,
+    "datetime": "2026-06-10T14:57:00.478367",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 3,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 127,
+    "order_id": 100,
+    "datetime": "2026-06-10T17:14:20.115316",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 128,
+    "order_id": 100,
+    "datetime": "2026-06-10T17:14:20.115316",
+    "product_id_ref": 5,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 129,
+    "order_id": 101,
+    "datetime": "2026-06-10T17:14:29.678331",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 130,
+    "order_id": 102,
+    "datetime": "2026-06-10T17:15:14.753509",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 3,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 131,
+    "order_id": 102,
+    "datetime": "2026-06-10T17:15:14.753509",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 132,
+    "order_id": 103,
+    "datetime": "2026-06-10T17:15:46.037635",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 133,
+    "order_id": 104,
+    "datetime": "2026-06-10T17:16:33.656728",
+    "product_id_ref": 3,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 134,
+    "order_id": 104,
+    "datetime": "2026-06-10T17:16:33.656728",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 135,
+    "order_id": 104,
+    "datetime": "2026-06-10T17:16:33.656728",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 136,
+    "order_id": 105,
+    "datetime": "2026-06-10T17:40:36.739817",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 137,
+    "order_id": 106,
+    "datetime": "2026-06-10T17:57:00.320254",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 138,
+    "order_id": 107,
+    "datetime": "2026-06-10T18:04:21.479698",
+    "product_id_ref": 5,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 139,
+    "order_id": 108,
+    "datetime": "2026-06-10T18:08:51.706734",
+    "product_id_ref": 2,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 140,
+    "order_id": 109,
+    "datetime": "2026-06-10T18:14:36.152374",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 141,
+    "order_id": 110,
+    "datetime": "2026-06-10T18:19:10.585618",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 4,
+    "subtotal": 400
+  },
+  {
+    "detail_id": 142,
+    "order_id": 111,
+    "datetime": "2026-06-10T19:27:49.413582",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 4,
+    "subtotal": 600
+  },
+  {
+    "detail_id": 143,
+    "order_id": 111,
+    "datetime": "2026-06-10T19:27:49.413582",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 144,
+    "order_id": 112,
+    "datetime": "2026-06-10T19:28:24.519732",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 1,
+    "subtotal": 150
+  },
+  {
+    "detail_id": 145,
+    "order_id": 113,
+    "datetime": "2026-06-10T19:28:38.417871",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 146,
+    "order_id": 113,
+    "datetime": "2026-06-10T19:28:38.417871",
+    "product_id_ref": 5,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 147,
+    "order_id": 114,
+    "datetime": "2026-06-10T19:49:31.41629",
+    "product_id_ref": 5,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 148,
+    "order_id": 114,
+    "datetime": "2026-06-10T19:49:31.41629",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 1,
+    "subtotal": 150
+  },
+  {
+    "detail_id": 149,
+    "order_id": 115,
+    "datetime": "2026-06-10T19:59:00.378524",
+    "product_id_ref": 5,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 150,
+    "order_id": 116,
+    "datetime": "2026-06-11T10:01:04.526394",
+    "product_id_ref": 1,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 151,
+    "order_id": 116,
+    "datetime": "2026-06-11T10:01:04.526394",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 152,
+    "order_id": 117,
+    "datetime": "2026-06-11T10:19:38.262778",
+    "product_id_ref": 1,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 153,
+    "order_id": 117,
+    "datetime": "2026-06-11T10:19:38.262778",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 154,
+    "order_id": 117,
+    "datetime": "2026-06-11T10:19:38.262778",
+    "product_id_ref": 7,
+    "free_itemtype": false,
+    "order_price": 50,
+    "qty_sales": 1,
+    "subtotal": 50
+  },
+  {
+    "detail_id": 156,
+    "order_id": 119,
+    "datetime": "2026-06-11T12:16:23.302824",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 157,
+    "order_id": 120,
+    "datetime": "2026-06-11T12:16:54.940405",
+    "product_id_ref": 5,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 158,
+    "order_id": 121,
+    "datetime": "2026-06-11T12:17:55.739005",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 5,
+    "subtotal": 750
+  },
+  {
+    "detail_id": 159,
+    "order_id": 122,
+    "datetime": "2026-06-11T12:35:38.831164",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 1,
+    "subtotal": 150
+  },
+  {
+    "detail_id": 161,
+    "order_id": 124,
+    "datetime": "2026-06-11T13:02:01.935674",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 162,
+    "order_id": 125,
+    "datetime": "2026-06-11T13:18:53.491536",
+    "product_id_ref": 3,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 163,
+    "order_id": 125,
+    "datetime": "2026-06-11T13:18:53.491536",
+    "product_id_ref": 2,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 3,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 164,
+    "order_id": 123,
+    "datetime": "2026-06-11T13:20:53.186939",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 165,
+    "order_id": 126,
+    "datetime": "2026-06-11T13:22:32.957768",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 3,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 166,
+    "order_id": 127,
+    "datetime": "2026-06-11T13:22:37.807698",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 167,
+    "order_id": 128,
+    "datetime": "2026-06-11T13:32:33.29972",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 168,
+    "order_id": 129,
+    "datetime": "2026-06-11T13:39:41.234215",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 169,
+    "order_id": 130,
+    "datetime": "2026-06-11T14:02:32.705344",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 170,
+    "order_id": 131,
+    "datetime": "2026-06-11T14:02:40.792424",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 171,
+    "order_id": 131,
+    "datetime": "2026-06-11T14:02:40.792424",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 1,
+    "subtotal": 150
+  },
+  {
+    "detail_id": 172,
+    "order_id": 132,
+    "datetime": "2026-06-11T14:02:48.049289",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 2,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 173,
+    "order_id": 133,
+    "datetime": "2026-06-11T14:27:29.803621",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 7,
+    "subtotal": 1050
+  },
+  {
+    "detail_id": 174,
+    "order_id": 134,
+    "datetime": "2026-06-11T14:27:40.083374",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 175,
+    "order_id": 135,
+    "datetime": "2026-06-11T14:31:02.393988",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 2,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 176,
+    "order_id": 136,
+    "datetime": "2026-06-11T14:43:21.67779",
+    "product_id_ref": 3,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 177,
+    "order_id": 137,
+    "datetime": "2026-06-11T15:11:20.760063",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 178,
+    "order_id": 138,
+    "datetime": "2026-06-11T15:16:32.986368",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 11,
+    "subtotal": 1650
+  },
+  {
+    "detail_id": 179,
+    "order_id": 139,
+    "datetime": "2026-06-11T15:45:14.763823",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 1,
+    "subtotal": 150
+  },
+  {
+    "detail_id": 180,
+    "order_id": 140,
+    "datetime": "2026-06-11T16:32:53.754135",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 2,
+    "subtotal": 200
+  },
+  {
+    "detail_id": 181,
+    "order_id": 140,
+    "datetime": "2026-06-11T16:32:53.754135",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 184,
+    "order_id": 142,
+    "datetime": "2026-06-11T16:48:52.497748",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 50,
+    "qty_sales": 1,
+    "subtotal": 50
+  },
+  {
+    "detail_id": 185,
+    "order_id": 143,
+    "datetime": "2026-06-11T16:54:33.008437",
+    "product_id_ref": 3,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 186,
+    "order_id": 144,
+    "datetime": "2026-06-11T16:55:28.017371",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 2,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 187,
+    "order_id": 145,
+    "datetime": "2026-06-11T17:34:06.847456",
+    "product_id_ref": 9,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 188,
+    "order_id": 145,
+    "datetime": "2026-06-11T17:34:06.847456",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 3,
+    "subtotal": 300
+  },
+  {
+    "detail_id": 189,
+    "order_id": 146,
+    "datetime": "2026-06-11T17:54:33.099541",
+    "product_id_ref": 5,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 190,
+    "order_id": 147,
+    "datetime": "2026-06-11T18:56:39.132369",
+    "product_id_ref": 4,
+    "free_itemtype": false,
+    "order_price": 100,
+    "qty_sales": 1,
+    "subtotal": 100
+  },
+  {
+    "detail_id": 191,
+    "order_id": 147,
+    "datetime": "2026-06-11T18:56:39.132369",
+    "product_id_ref": 8,
+    "free_itemtype": false,
+    "order_price": 150,
+    "qty_sales": 1,
+    "subtotal": 150
+  }
+]

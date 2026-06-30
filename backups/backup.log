@@ -70,3 +70,222 @@
 
 ✅ Backup สำเร็จ! Telegram แจ้งแล้ว
 
+◇ injected env (5) from Users/evokestudio/Documents/GibStock/backend/.env // tip: ◈ secrets for agents [www.dotenvx.com]
+
+🗄️  GibStock Database Backup
+📅 เวลา: 2026-06-11_23-00-00
+📁 บันทึกที่: /Users/evokestudio/Documents/GibStock/backups/2026-06-11_23-00-00
+
+  ⏳ product_type   ✅ 9 rows
+  ⏳ stock          ✅ 19 rows
+  ⏳ orders         ✅ 143 rows
+  ⏳ order_detail   ✅ 178 rows
+  ⏳ expenses       ✅ 0 rows
+
+──────────────────────────────
+📊 สรุปผล:
+  ✅ product_type    9 rows
+  ✅ stock           19 rows
+  ✅ orders          143 rows
+  ✅ order_detail    178 rows
+  ✅ expenses        0 rows
+  รวมทั้งหมด: 349 rows
+──────────────────────────────
+
+✅ Backup สำเร็จ! Telegram แจ้งแล้ว
+
+◇ injected env (5) from Users/evokestudio/Documents/GibStock/backend/.env // tip: ⌘ enable debugging { debug: true }
+
+🗄️  GibStock Database Backup
+📅 เวลา: 2026-06-12_23-40-31
+📁 บันทึกที่: /Users/evokestudio/Documents/GibStock/backups/2026-06-12_23-40-31
+
+  ⏳ product_type   ✅ 9 rows
+  ⏳ stock          ✅ 25 rows
+  ⏳ orders         ✅ 171 rows
+  ⏳ order_detail   ✅ 215 rows
+  ⏳ expenses       ✅ 0 rows
+
+──────────────────────────────
+📊 สรุปผล:
+  ✅ product_type    9 rows
+  ✅ stock           25 rows
+  ✅ orders          171 rows
+  ✅ order_detail    215 rows
+  ✅ expenses        0 rows
+  รวมทั้งหมด: 420 rows
+──────────────────────────────
+
+✅ Backup สำเร็จ! Telegram แจ้งแล้ว
+
+◇ injected env (5) from Users/evokestudio/Documents/GibStock/backend/.env // tip: ⌘ enable debugging { debug: true }
+
+🗄️  GibStock Database Backup
+📅 เวลา: 2026-06-18_23-04-45
+📁 บันทึกที่: /Users/evokestudio/Documents/GibStock/backups/2026-06-18_23-04-45
+
+  ⏳ product_type   ✅ 9 rows
+  ⏳ stock          ✅ 36 rows
+  ⏳ orders         ✅ 405 rows
+  ⏳ order_detail   ✅ 526 rows
+  ⏳ expenses       ✅ 0 rows
+
+──────────────────────────────
+📊 สรุปผล:
+  ✅ product_type    9 rows
+  ✅ stock           36 rows
+  ✅ orders          405 rows
+  ✅ order_detail    526 rows
+  ✅ expenses        0 rows
+  รวมทั้งหมด: 976 rows
+──────────────────────────────
+
+✅ Backup สำเร็จ! Telegram แจ้งแล้ว
+
+◇ injected env (5) from Users/evokestudio/Documents/GibStock/backend/.env // tip: ⌁ auth for agents [www.vestauth.com]
+
+🗄️  GibStock Database Backup
+📅 เวลา: 2026-06-21_21-44-41
+📁 บันทึกที่: /Users/evokestudio/Documents/GibStock/backups/2026-06-21_21-44-41
+
+  ⏳ product_type   ✅ 9 rows
+  ⏳ stock          ✅ 46 rows
+  ⏳ orders         ✅ 520 rows
+  ⏳ order_detail   ✅ 671 rows
+  ⏳ expenses       ✅ 0 rows
+
+──────────────────────────────
+📊 สรุปผล:
+  ✅ product_type    9 rows
+  ✅ stock           46 rows
+  ✅ orders          520 rows
+  ✅ order_detail    671 rows
+  ✅ expenses        0 rows
+  รวมทั้งหมด: 1246 rows
+──────────────────────────────
+
+✅ Backup สำเร็จ! Telegram แจ้งแล้ว
+
+◇ injected env (5) from Users/evokestudio/Documents/GibStock/backend/.env // tip: ⌘ override existing { override: true }
+
+🗄️  GibStock Database Backup
+📅 เวลา: 2026-06-23_17-20-58
+📁 บันทึกที่: /Users/evokestudio/Documents/GibStock/backups/2026-06-23_17-20-58
+
+  ⏳ product_type   ❌ TypeError: fetch failed
+  ⏳ stock          ❌ TypeError: fetch failed
+  ⏳ orders         ❌ TypeError: fetch failed
+  ⏳ order_detail   ❌ TypeError: fetch failed
+  ⏳ expenses       ❌ TypeError: fetch failed
+
+──────────────────────────────
+📊 สรุปผล:
+  ❌ product_type    0 rows
+  ❌ stock           0 rows
+  ❌ orders          0 rows
+  ❌ order_detail    0 rows
+  ❌ expenses        0 rows
+  รวมทั้งหมด: 0 rows
+──────────────────────────────
+  (Telegram notify ไม่สำเร็จ — ไม่กระทบ backup)
+
+⚠️  Backup เสร็จบางส่วน — มี error ดูรายละเอียดข้างบน
+
+◇ injected env (5) from Users/evokestudio/Documents/GibStock/backend/.env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+
+🗄️  GibStock Database Backup
+📅 เวลา: 2026-06-23_23-53-39
+📁 บันทึกที่: /Users/evokestudio/Documents/GibStock/backups/2026-06-23_23-53-39
+
+  ⏳ product_type   ❌ TypeError: fetch failed
+  ⏳ stock          ❌ TypeError: fetch failed
+  ⏳ orders         ❌ TypeError: fetch failed
+  ⏳ order_detail   ❌ TypeError: fetch failed
+  ⏳ expenses       ❌ TypeError: fetch failed
+
+──────────────────────────────
+📊 สรุปผล:
+  ❌ product_type    0 rows
+  ❌ stock           0 rows
+  ❌ orders          0 rows
+  ❌ order_detail    0 rows
+  ❌ expenses        0 rows
+  รวมทั้งหมด: 0 rows
+──────────────────────────────
+  (Telegram notify ไม่สำเร็จ — ไม่กระทบ backup)
+
+⚠️  Backup เสร็จบางส่วน — มี error ดูรายละเอียดข้างบน
+
+◇ injected env (5) from Users/evokestudio/Documents/GibStock/backend/.env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+
+🗄️  GibStock Database Backup
+📅 เวลา: 2026-06-24_23-17-32
+📁 บันทึกที่: /Users/evokestudio/Documents/GibStock/backups/2026-06-24_23-17-32
+
+  ⏳ product_type   ✅ 9 rows
+  ⏳ stock          ✅ 51 rows
+  ⏳ orders         ✅ 569 rows
+  ⏳ order_detail   ✅ 745 rows
+  ⏳ expenses       ✅ 0 rows
+
+──────────────────────────────
+📊 สรุปผล:
+  ✅ product_type    9 rows
+  ✅ stock           51 rows
+  ✅ orders          569 rows
+  ✅ order_detail    745 rows
+  ✅ expenses        0 rows
+  รวมทั้งหมด: 1374 rows
+──────────────────────────────
+
+✅ Backup สำเร็จ! Telegram แจ้งแล้ว
+
+◇ injected env (5) from Users/evokestudio/Documents/GibStock/backend/.env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+
+🗄️  GibStock Database Backup
+📅 เวลา: 2026-06-25_23-32-56
+📁 บันทึกที่: /Users/evokestudio/Documents/GibStock/backups/2026-06-25_23-32-56
+
+  ⏳ product_type   ❌ TypeError: fetch failed
+  ⏳ stock          ❌ TypeError: fetch failed
+  ⏳ orders         ❌ TypeError: fetch failed
+  ⏳ order_detail   ❌ TypeError: fetch failed
+  ⏳ expenses       ❌ TypeError: fetch failed
+
+──────────────────────────────
+📊 สรุปผล:
+  ❌ product_type    0 rows
+  ❌ stock           0 rows
+  ❌ orders          0 rows
+  ❌ order_detail    0 rows
+  ❌ expenses        0 rows
+  รวมทั้งหมด: 0 rows
+──────────────────────────────
+  (Telegram notify ไม่สำเร็จ — ไม่กระทบ backup)
+
+⚠️  Backup เสร็จบางส่วน — มี error ดูรายละเอียดข้างบน
+
+◇ injected env (5) from Users/evokestudio/Documents/GibStock/backend/.env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+
+🗄️  GibStock Database Backup
+📅 เวลา: 2026-06-30_17-34-09
+📁 บันทึกที่: /Users/evokestudio/Documents/GibStock/backups/2026-06-30_17-34-09
+
+  ⏳ product_type   ❌ TypeError: fetch failed
+  ⏳ stock          ❌ TypeError: fetch failed
+  ⏳ orders         ❌ TypeError: fetch failed
+  ⏳ order_detail   ✅ 835 rows
+  ⏳ expenses       ✅ 0 rows
+
+──────────────────────────────
+📊 สรุปผล:
+  ❌ product_type    0 rows
+  ❌ stock           0 rows
+  ❌ orders          0 rows
+  ✅ order_detail    835 rows
+  ✅ expenses        0 rows
+  รวมทั้งหมด: 835 rows
+──────────────────────────────
+
+⚠️  Backup เสร็จบางส่วน — มี error ดูรายละเอียดข้างบน
+
