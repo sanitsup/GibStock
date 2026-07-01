@@ -1,0 +1,380 @@
+[
+  {
+    "stock_id": 1,
+    "product_id": 1,
+    "product_name": "เสื้อขาว",
+    "qty_added": 160,
+    "added_at": "2026-06-08T09:20:04.770733"
+  },
+  {
+    "stock_id": 2,
+    "product_id": 3,
+    "product_name": "เสื้อดำ",
+    "qty_added": 223,
+    "added_at": "2026-06-08T09:20:18.07386"
+  },
+  {
+    "stock_id": 3,
+    "product_id": 7,
+    "product_name": "เสื้อเด็ก",
+    "qty_added": 24,
+    "added_at": "2026-06-08T09:20:35.35658"
+  },
+  {
+    "stock_id": 4,
+    "product_id": 4,
+    "product_name": "แฟชั่นรวมวัย",
+    "qty_added": 607,
+    "added_at": "2026-06-08T09:20:51.997349"
+  },
+  {
+    "stock_id": 5,
+    "product_id": 5,
+    "product_name": "กระโปรง",
+    "qty_added": 181,
+    "added_at": "2026-06-08T09:21:16.862635"
+  },
+  {
+    "stock_id": 6,
+    "product_id": 2,
+    "product_name": "เสื้อคลุม",
+    "qty_added": 99,
+    "added_at": "2026-06-08T09:21:32.213668"
+  },
+  {
+    "stock_id": 7,
+    "product_id": 6,
+    "product_name": "เสื้อบนหุ่น",
+    "qty_added": 3,
+    "added_at": "2026-06-08T09:21:41.74418"
+  },
+  {
+    "stock_id": 8,
+    "product_id": 6,
+    "product_name": "เสื้อบนหุ่น",
+    "qty_added": 2,
+    "added_at": "2026-06-08T22:34:47.790057"
+  },
+  {
+    "stock_id": 9,
+    "product_id": 9,
+    "product_name": "เสื้อผู้ชาย",
+    "qty_added": 420,
+    "added_at": "2026-06-09T09:57:42.344371"
+  },
+  {
+    "stock_id": 10,
+    "product_id": 8,
+    "product_name": "เดรส",
+    "qty_added": 450,
+    "added_at": "2026-06-09T09:58:07.627709"
+  },
+  {
+    "stock_id": 11,
+    "product_id": 5,
+    "product_name": "กระโปรง",
+    "qty_added": 100,
+    "added_at": "2026-06-09T12:39:36.032344"
+  },
+  {
+    "stock_id": 12,
+    "product_id": 9,
+    "product_name": "เสื้อผู้ชาย",
+    "qty_added": 211,
+    "added_at": "2026-06-09T12:40:14.94568"
+  },
+  {
+    "stock_id": 13,
+    "product_id": 8,
+    "product_name": "เดรส",
+    "qty_added": 80,
+    "added_at": "2026-06-09T12:40:40.269718"
+  },
+  {
+    "stock_id": 14,
+    "product_id": 4,
+    "product_name": "แฟชั่นรวมวัย",
+    "qty_added": 50,
+    "added_at": "2026-06-09T12:41:42.08603"
+  },
+  {
+    "stock_id": 15,
+    "product_id": 4,
+    "product_name": "แฟชั่นรวมวัย",
+    "qty_added": 60,
+    "added_at": "2026-06-10T13:23:56.686972"
+  },
+  {
+    "stock_id": 17,
+    "product_id": 1,
+    "product_name": "เสื้อขาว",
+    "qty_added": 50,
+    "added_at": "2026-06-10T17:27:49.30355"
+  },
+  {
+    "stock_id": 18,
+    "product_id": 2,
+    "product_name": "เสื้อคลุม",
+    "qty_added": 50,
+    "added_at": "2026-06-10T17:28:19.633981"
+  },
+  {
+    "stock_id": 19,
+    "product_id": 8,
+    "product_name": "เดรส",
+    "qty_added": 50,
+    "added_at": "2026-06-10T17:29:37.751469"
+  },
+  {
+    "stock_id": 20,
+    "product_id": 9,
+    "product_name": "เสื้อผู้ชาย",
+    "qty_added": 122,
+    "added_at": "2026-06-10T22:16:46.545609"
+  },
+  {
+    "stock_id": 22,
+    "product_id": 3,
+    "product_name": "เสื้อดำ",
+    "qty_added": 47,
+    "added_at": "2026-06-12T14:15:18.947304"
+  },
+  {
+    "stock_id": 23,
+    "product_id": 4,
+    "product_name": "แฟชั่นรวมวัย",
+    "qty_added": 1,
+    "added_at": "2026-06-12T14:16:22.605318"
+  },
+  {
+    "stock_id": 24,
+    "product_id": 5,
+    "product_name": "กระโปรง",
+    "qty_added": 40,
+    "added_at": "2026-06-12T14:16:48.102335"
+  },
+  {
+    "stock_id": 25,
+    "product_id": 7,
+    "product_name": "เสื้อเด็ก",
+    "qty_added": 4,
+    "added_at": "2026-06-12T14:17:11.782445"
+  },
+  {
+    "stock_id": 26,
+    "product_id": 8,
+    "product_name": "เดรส",
+    "qty_added": 50,
+    "added_at": "2026-06-12T14:17:35.596716"
+  },
+  {
+    "stock_id": 27,
+    "product_id": 4,
+    "product_name": "แฟชั่นรวมวัย",
+    "qty_added": 7,
+    "added_at": "2026-06-12T17:20:25.610585"
+  },
+  {
+    "stock_id": 28,
+    "product_id": 2,
+    "product_name": "เสื้อคลุม",
+    "qty_added": 1,
+    "added_at": "2026-06-15T13:05:13.149065"
+  },
+  {
+    "stock_id": 29,
+    "product_id": 3,
+    "product_name": "เสื้อดำ",
+    "qty_added": 30,
+    "added_at": "2026-06-15T13:05:39.600966"
+  },
+  {
+    "stock_id": 30,
+    "product_id": 4,
+    "product_name": "แฟชั่นรวมวัย",
+    "qty_added": 49,
+    "added_at": "2026-06-15T13:06:33.361816"
+  },
+  {
+    "stock_id": 31,
+    "product_id": 5,
+    "product_name": "กระโปรง",
+    "qty_added": 40,
+    "added_at": "2026-06-15T13:07:01.28068"
+  },
+  {
+    "stock_id": 32,
+    "product_id": 8,
+    "product_name": "เดรส",
+    "qty_added": 50,
+    "added_at": "2026-06-15T13:07:30.156432"
+  },
+  {
+    "stock_id": 33,
+    "product_id": 9,
+    "product_name": "เสื้อผู้ชาย",
+    "qty_added": 40,
+    "added_at": "2026-06-15T13:07:57.654598"
+  },
+  {
+    "stock_id": 34,
+    "product_id": 9,
+    "product_name": "เสื้อผู้ชาย",
+    "qty_added": 56,
+    "added_at": "2026-06-16T12:59:46.495706"
+  },
+  {
+    "stock_id": 35,
+    "product_id": 2,
+    "product_name": "เสื้อคลุม",
+    "qty_added": 1,
+    "added_at": "2026-06-16T16:36:00.169816"
+  },
+  {
+    "stock_id": 36,
+    "product_id": 4,
+    "product_name": "แฟชั่นรวมวัย",
+    "qty_added": 30,
+    "added_at": "2026-06-17T11:18:15.258804"
+  },
+  {
+    "stock_id": 37,
+    "product_id": 4,
+    "product_name": "แฟชั่นรวมวัย",
+    "qty_added": 50,
+    "added_at": "2026-06-17T13:21:20.744792"
+  },
+  {
+    "stock_id": 38,
+    "product_id": 3,
+    "product_name": "เสื้อดำ",
+    "qty_added": 3,
+    "added_at": "2026-06-18T13:06:08.440351"
+  },
+  {
+    "stock_id": 39,
+    "product_id": 2,
+    "product_name": "เสื้อคลุม",
+    "qty_added": 1,
+    "added_at": "2026-06-20T13:38:50.314736"
+  },
+  {
+    "stock_id": 40,
+    "product_id": 3,
+    "product_name": "เสื้อดำ",
+    "qty_added": 26,
+    "added_at": "2026-06-20T13:39:17.476711"
+  },
+  {
+    "stock_id": 41,
+    "product_id": 8,
+    "product_name": "เดรส",
+    "qty_added": 83,
+    "added_at": "2026-06-20T13:40:38.778563"
+  },
+  {
+    "stock_id": 42,
+    "product_id": 9,
+    "product_name": "เสื้อผู้ชาย",
+    "qty_added": 195,
+    "added_at": "2026-06-20T13:41:21.879395"
+  },
+  {
+    "stock_id": 43,
+    "product_id": 3,
+    "product_name": "เสื้อดำ",
+    "qty_added": 3,
+    "added_at": "2026-06-21T12:56:17.292875"
+  },
+  {
+    "stock_id": 44,
+    "product_id": 2,
+    "product_name": "เสื้อคลุม",
+    "qty_added": 1,
+    "added_at": "2026-06-21T12:56:33.169936"
+  },
+  {
+    "stock_id": 45,
+    "product_id": 9,
+    "product_name": "เสื้อผู้ชาย",
+    "qty_added": 5,
+    "added_at": "2026-06-21T13:10:10.536145"
+  },
+  {
+    "stock_id": 46,
+    "product_id": 9,
+    "product_name": "เสื้อผู้ชาย",
+    "qty_added": 5,
+    "added_at": "2026-06-21T13:10:11.881223"
+  },
+  {
+    "stock_id": 47,
+    "product_id": 3,
+    "product_name": "เสื้อดำ",
+    "qty_added": 1,
+    "added_at": "2026-06-21T13:13:21.113622"
+  },
+  {
+    "stock_id": 48,
+    "product_id": 8,
+    "product_name": "เดรส",
+    "qty_added": 80,
+    "added_at": "2026-06-21T16:37:38.544045"
+  },
+  {
+    "stock_id": 49,
+    "product_id": 1,
+    "product_name": "เสื้อขาว",
+    "qty_added": 40,
+    "added_at": "2026-06-22T10:47:33.404002"
+  },
+  {
+    "stock_id": 50,
+    "product_id": 2,
+    "product_name": "เสื้อคลุม",
+    "qty_added": 1,
+    "added_at": "2026-06-22T11:48:17.126631"
+  },
+  {
+    "stock_id": 51,
+    "product_id": 3,
+    "product_name": "เสื้อดำ",
+    "qty_added": 80,
+    "added_at": "2026-06-22T11:48:49.080659"
+  },
+  {
+    "stock_id": 52,
+    "product_id": 4,
+    "product_name": "แฟชั่นรวมวัย",
+    "qty_added": 50,
+    "added_at": "2026-06-22T11:49:12.552565"
+  },
+  {
+    "stock_id": 53,
+    "product_id": 9,
+    "product_name": "เสื้อผู้ชาย",
+    "qty_added": 125,
+    "added_at": "2026-06-22T11:50:17.202245"
+  },
+  {
+    "stock_id": 54,
+    "product_id": 8,
+    "product_name": "เดรส",
+    "qty_added": 30,
+    "added_at": "2026-06-30T17:48:11.890652"
+  },
+  {
+    "stock_id": 55,
+    "product_id": 4,
+    "product_name": "แฟชั่นรวมวัย",
+    "qty_added": 89,
+    "added_at": "2026-06-30T17:49:38.530016"
+  },
+  {
+    "stock_id": 56,
+    "product_id": 1,
+    "product_name": "เสื้อขาว",
+    "qty_added": 39,
+    "added_at": "2026-06-30T17:50:15.445584"
+  }
+]

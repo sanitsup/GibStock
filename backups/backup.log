@@ -289,3 +289,27 @@
 
 ⚠️  Backup เสร็จบางส่วน — มี error ดูรายละเอียดข้างบน
 
+◇ injected env (5) from Users/evokestudio/Documents/GibStock/backend/.env // tip: ⌘ suppress logs { quiet: true }
+
+🗄️  GibStock Database Backup
+📅 เวลา: 2026-06-30_23-03-50
+📁 บันทึกที่: /Users/evokestudio/Documents/GibStock/backups/2026-06-30_23-03-50
+
+  ⏳ product_type   ✅ 9 rows
+  ⏳ stock          ✅ 59 rows
+  ⏳ orders         ✅ 654 rows
+  ⏳ order_detail   ✅ 885 rows
+  ⏳ expenses       ✅ 0 rows
+
+──────────────────────────────
+📊 สรุปผล:
+  ✅ product_type    9 rows
+  ✅ stock           59 rows
+  ✅ orders          654 rows
+  ✅ order_detail    885 rows
+  ✅ expenses        0 rows
+  รวมทั้งหมด: 1607 rows
+──────────────────────────────
+
+✅ Backup สำเร็จ! Telegram แจ้งแล้ว
+

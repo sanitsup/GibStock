@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Trash2, Plus, RefreshCw, ChevronLeft, ChevronRight, Receipt, TrendingDown, FileText } from 'lucide-react'
+import { Trash2, Plus, RefreshCw, ChevronLeft, ChevronRight, Receipt, TrendingDown, FileText, Pencil, X } from 'lucide-react'
 
 const API = import.meta.env.VITE_API_URL
 
@@ -20,6 +20,16 @@ function toLocalDateStr(date) {
   return `${y}-${m}-${d}`
 }
 
+function toDatetimeLocalStr(datetimeStr) {
+  const d = new Date(datetimeStr)
+  const y = d.getFullYear()
+  const mo = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  const h = String(d.getHours()).padStart(2, '0')
+  const mi = String(d.getMinutes()).padStart(2, '0')
+  return `${y}-${mo}-${day}T${h}:${mi}`
+}
+
 export default function ExpensePage() {
   const today = new Date()
   const [selectedDate, setSelectedDate] = useState(toLocalDateStr(today))
@@ -31,6 +41,13 @@ export default function ExpensePage() {
   const [description, setDescription] = useState('')
   const [formError, setFormError] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
+
+  const [editingExpense, setEditingExpense] = useState(null)
+  const [editAmount, setEditAmount] = useState('')
+  const [editDescription, setEditDescription] = useState('')
+  const [editDatetime, setEditDatetime] = useState('')
+  const [editSubmitting, setEditSubmitting] = useState(false)
+  const [editError, setEditError] = useState('')
 
   const fetchExpenses = useCallback(async () => {
     setLoading(true)
@@ -101,10 +118,108 @@ export default function ExpensePage() {
     }
   }
 
+  function openEdit(expense) {
+    setEditingExpense(expense)
+    setEditAmount(String(expense.amount))
+    setEditDescription(expense.description)
+    setEditDatetime(expense.datetime ? toDatetimeLocalStr(expense.datetime) : toDatetimeLocalStr(new Date().toISOString()))
+    setEditError('')
+  }
+
+  function closeEdit() {
+    setEditingExpense(null)
+    setEditError('')
+  }
+
+  async function handleEditSubmit() {
+    setEditError('')
+    const numAmount = parseFloat(editAmount)
+    if (!editAmount || isNaN(numAmount) || numAmount <= 0) {
+      setEditError('กรุณากรอกจำนวนเงินที่ถูกต้อง')
+      return
+    }
+    if (!editDescription.trim()) {
+      setEditError('กรุณากรอกรายละเอียดค่าใช้จ่าย')
+      return
+    }
+    setEditSubmitting(true)
+    try {
+      const datetimeWithTz = editDatetime + ':00+07:00'
+      const res = await fetch(`${API}/api/expenses/${editingExpense.expense_id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount: numAmount,
+          description: editDescription.trim(),
+          datetime: datetimeWithTz
+        }),
+      })
+      if (!res.ok) throw new Error()
+      closeEdit()
+      fetchExpenses()
+    } catch {
+      setEditError('เกิดข้อผิดพลาด กรุณาลองใหม่')
+    } finally {
+      setEditSubmitting(false)
+    }
+  }
+
   const isToday = selectedDate === toLocalDateStr(today)
 
   return (
     <div className="p-6 max-w-4xl mx-auto space-y-6">
+
+      {editingExpense && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 space-y-4">
+            <div className="flex items-center justify-between">
+              <h2 className="text-base font-semibold text-slate-700 flex items-center gap-2">
+                <Pencil size={16} className="text-sky-500" />
+                แก้ไขค่าใช้จ่าย
+              </h2>
+              <button onClick={closeEdit} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-400">
+                <X size={16} />
+              </button>
+            </div>
+            <div className="space-y-3">
+              <div>
+                <label className="block text-xs font-medium text-slate-500 mb-1">จำนวนเงิน (บาท)</label>
+                <div className="relative">
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">฿</span>
+                  <input type="number" min="0" step="0.01"
+                    value={editAmount} onChange={(e) => setEditAmount(e.target.value)}
+                    className="w-full pl-7 pr-3 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-300" />
+                </div>
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-slate-500 mb-1">รายละเอียด</label>
+                <input type="text"
+                  value={editDescription} onChange={(e) => setEditDescription(e.target.value)}
+                  className="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-300" />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-slate-500 mb-1">วันที่และเวลา</label>
+                <input type="datetime-local"
+                  value={editDatetime} onChange={(e) => setEditDatetime(e.target.value)}
+                  className="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-300" />
+              </div>
+            </div>
+            {editError && <p className="text-sm text-red-500 bg-red-50 px-4 py-2 rounded-lg">⚠️ {editError}</p>}
+            <div className="flex gap-3 pt-1">
+              <button onClick={closeEdit}
+                className="flex-1 py-2.5 border border-slate-200 text-slate-600 text-sm font-medium rounded-xl hover:bg-slate-50 transition-colors">
+                ยกเลิก
+              </button>
+              <button onClick={handleEditSubmit} disabled={editSubmitting}
+                className="flex-1 py-2.5 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white text-sm font-semibold rounded-xl transition-colors flex items-center justify-center gap-2">
+                {editSubmitting ? <RefreshCw size={14} className="animate-spin" /> : <Pencil size={14} />}
+                บันทึกการแก้ไข
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="flex items-center gap-3 mb-2">
         <div className="w-10 h-10 bg-sky-500 rounded-xl flex items-center justify-center">
           <Receipt size={20} className="text-white" />
@@ -125,22 +240,18 @@ export default function ExpensePage() {
             <label className="block text-xs font-medium text-slate-500 mb-1">จำนวนเงิน (บาท)</label>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">฿</span>
-              <input
-                type="number" min="0" step="0.01" placeholder="0.00"
+              <input type="number" min="0" step="0.01" placeholder="0.00"
                 value={amount} onChange={(e) => setAmount(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
-                className="w-full pl-7 pr-3 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-300"
-              />
+                className="w-full pl-7 pr-3 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-300" />
             </div>
           </div>
           <div className="flex-1">
             <label className="block text-xs font-medium text-slate-500 mb-1">รายละเอียด</label>
-            <input
-              type="text" placeholder="เช่น ค่าน้ำ, ค่าไฟ, ค่าถุงพลาสติก..."
+            <input type="text" placeholder="เช่น ค่าน้ำ, ค่าไฟ, ค่าถุงพลาสติก..."
               value={description} onChange={(e) => setDescription(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
-              className="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-300"
-            />
+              className="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-300" />
           </div>
           <div className="flex-none self-end">
             <button onClick={handleSubmit} disabled={submitting}
@@ -218,10 +329,16 @@ export default function ExpensePage() {
                 <p className="text-sm font-bold text-red-500 flex-none">
                   −฿{Number(expense.amount).toLocaleString('th-TH', { minimumFractionDigits: 2 })}
                 </p>
-                <button onClick={() => handleDelete(expense.expense_id)} disabled={deletingId === expense.expense_id}
-                  className="opacity-0 group-hover:opacity-100 p-1.5 rounded-lg text-slate-300 hover:text-red-400 hover:bg-red-50 transition-all disabled:opacity-50">
-                  {deletingId === expense.expense_id ? <RefreshCw size={14} className="animate-spin" /> : <Trash2 size={14} />}
-                </button>
+                <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-all">
+                  <button onClick={() => openEdit(expense)}
+                    className="p-1.5 rounded-lg text-slate-300 hover:text-sky-500 hover:bg-sky-50 transition-all">
+                    <Pencil size={14} />
+                  </button>
+                  <button onClick={() => handleDelete(expense.expense_id)} disabled={deletingId === expense.expense_id}
+                    className="p-1.5 rounded-lg text-slate-300 hover:text-red-400 hover:bg-red-50 transition-all disabled:opacity-50">
+                    {deletingId === expense.expense_id ? <RefreshCw size={14} className="animate-spin" /> : <Trash2 size={14} />}
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
