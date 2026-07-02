@@ -313,3 +313,27 @@
 
 ✅ Backup สำเร็จ! Telegram แจ้งแล้ว
 
+◇ injected env (5) from Users/evokestudio/Documents/GibStock/backend/.env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+
+🗄️  GibStock Database Backup
+📅 เวลา: 2026-07-03_03-21-14
+📁 บันทึกที่: /Users/evokestudio/Documents/GibStock/backups/2026-07-03_03-21-14
+
+  ⏳ product_type   ❌ TypeError: fetch failed
+  ⏳ stock          ❌ TypeError: fetch failed
+  ⏳ orders         ❌ TypeError: fetch failed
+  ⏳ order_detail   ✅ 963 rows
+  ⏳ expenses       ✅ 9 rows
+
+──────────────────────────────
+📊 สรุปผล:
+  ❌ product_type    0 rows
+  ❌ stock           0 rows
+  ❌ orders          0 rows
+  ✅ order_detail    963 rows
+  ✅ expenses        9 rows
+  รวมทั้งหมด: 972 rows
+──────────────────────────────
+
+⚠️  Backup เสร็จบางส่วน — มี error ดูรายละเอียดข้างบน
+

@@ -329,13 +329,13 @@ export default function ExpensePage() {
                 <p className="text-sm font-bold text-red-500 flex-none">
                   −฿{Number(expense.amount).toLocaleString('th-TH', { minimumFractionDigits: 2 })}
                 </p>
-                <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-all">
+                <div className="flex gap-1">
                   <button onClick={() => openEdit(expense)}
-                    className="p-1.5 rounded-lg text-slate-300 hover:text-sky-500 hover:bg-sky-50 transition-all">
+                    className="p-1.5 rounded-lg text-sky-400 hover:text-sky-600 hover:bg-sky-100 transition-all">
                     <Pencil size={14} />
                   </button>
                   <button onClick={() => handleDelete(expense.expense_id)} disabled={deletingId === expense.expense_id}
-                    className="p-1.5 rounded-lg text-slate-300 hover:text-red-400 hover:bg-red-50 transition-all disabled:opacity-50">
+                    className="p-1.5 rounded-lg text-red-400 hover:text-red-600 hover:bg-red-100 transition-all disabled:opacity-50">
                     {deletingId === expense.expense_id ? <RefreshCw size={14} className="animate-spin" /> : <Trash2 size={14} />}
                   </button>
                 </div>

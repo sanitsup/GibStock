@@ -1,0 +1,44 @@
+[
+  {
+    "expense_id": 1,
+    "datetime": "2026-07-01T00:00:48.164216",
+    "description": "ค่าเช่า",
+    "amount": 161358.14
+  },
+  {
+    "expense_id": 2,
+    "datetime": "2026-06-30T00:01:00",
+    "description": "ค่าราวใหม่ ไม้แขวน หุ่น",
+    "amount": 25424
+  },
+  {
+    "expense_id": 3,
+    "datetime": "2026-06-30T00:02:00",
+    "description": "ค่ากระจก",
+    "amount": 1190
+  },
+  {
+    "expense_id": 4,
+    "datetime": "2026-06-30T00:03:00",
+    "description": "เงินเดือนพนักงาน",
+    "amount": 22400
+  },
+  {
+    "expense_id": 5,
+    "datetime": "2026-06-30T00:04:00",
+    "description": "ค่าผ้าคลุมร้าน+ค่าเย็นต่อผ้า",
+    "amount": 1710
+  },
+  {
+    "expense_id": 6,
+    "datetime": "2026-06-30T00:05:00",
+    "description": "ต้นทุนเสื้อผ้า",
+    "amount": 47953
+  },
+  {
+    "expense_id": 7,
+    "datetime": "2026-06-30T00:07:00",
+    "description": "ค่าน้ำดื่ม กล่องพลาสติก ไม้กวาด",
+    "amount": 782
+  }
+]
